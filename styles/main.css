@@ -1,0 +1,23 @@
+body {
+    background-color: white;
+    display: grid;
+    grid-template-areas:
+    "header header"
+    "nav main"
+    ;
+}
+header{
+    grid-area: header;
+    border: 2px solid red;
+}
+
+nav {
+    grid-area: nav;
+    border: 2px solid purple;
+}
+
+
+main{
+    grid-area: main;
+    border: 2px solid blue;
+}
