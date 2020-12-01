@@ -9,6 +9,8 @@ const gameRating = document.querySelector('#game-rating')
 const gameRelease = document.querySelector('#game-release')
 const gameReview = document.querySelector('#game-review')
 const reviewContainer = document.querySelector('#review-container')
+// let updatedLike = ""
+const reviewLike = document.querySelector('#review-like')
 
 
 /******** Render Functions ********/
@@ -36,6 +38,7 @@ function renderOneGame(game) {
 
 function renderGameDetails(gameObj) {
     
+    reviewContainer.dataset.id = gameObj.id // Dislike and like 
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
@@ -52,7 +55,11 @@ function renderGameDetails(gameObj) {
         const contentRating = document.createElement('h3')
         const contentPlaytime = document.createElement('h4')
         const likeButton = document.createElement('likebutton')
+        likeButton.className = "like-button"
+        likeButton.dataset.id = review.id
         const dislikeButton = document.createElement('dislikebutton')
+        dislikeButton.className = "dislike-button"
+        dislikeButton.dataset.id = review.id
         dislikeButton.textContent = '💩'
         likeButton.textContent = '👍'
         contentP.className = 'review-content'
@@ -63,17 +70,12 @@ function renderGameDetails(gameObj) {
         contentP.textContent = review.content
         contentPlaytime.textContent = review.playtime
         contentLike.textContent = review.like
+        //updatedLike = document.querySelector('.likes')
         
         gameReview.append(titleLi,contentP,contentPlaytime, contentLike, contentRating)
         
         reviewContainer.append(gameReview,likeButton, dislikeButton)
     })
-
-    // t.string "title"
-    // t.integer "rating"
-    // t.integer "like"
-    // t.text "content"
-    // t.integer "playtime"
     
     
 }
@@ -82,6 +84,7 @@ function renderGameDetails(gameObj) {
 /******** Event Listeners ********/
 gameContainer.addEventListener('click', handleGameClick)
 reviewContainer.addEventListener('click', handleLikeButton)
+reviewContainer.addEventListener('click', handleDislikeButton)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -97,17 +100,53 @@ function handleGameClick(event) {
 }
 
 function handleLikeButton(event) {
-    if (event.target.matches('#likebutton')) {
+    const id = event.target.dataset.id
+    const updatedLike = document.querySelector('.likes')
+    const increaseLike = parseInt(updatedLike.textContent) + 1
+    
+    
+    console.log(event.target)
+    if (event.target.matches('.like-button')) {
+        updatedLike.textContent = increaseLike
+        }
 
-    }
+        const likeObj = {
+            like: increaseLike
+        }
+        
+        updateLike(id, likeObj)
+
 }
 
 function handleDislikeButton(e){
-    if(e.target.matches('#dislikebutton')) {
+    const id = e.target.dataset.id
+    const updatedLike = document.querySelector('.likes')
+    const decreaseLike = parseInt(updatedLike.textContent) - 1
+    
+    if(e.target.matches('.dislike-button')) {
+        updatedLike.textContent = decreaseLike
 
     }
     
+    const likeObj = {
+        like: decreaseLike
+    }
+    
+    updateLike(id, likeObj)
 }
+
+const updateLike = (id, likeObj) => {
+    fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(likeObj)
+    })
+    .then(r => r.json())
+    .then(console.log)
+}
+
 
 /****** Initialize *********/
 getGames()
