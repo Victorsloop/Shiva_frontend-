@@ -1,23 +1,34 @@
 body {
-    background-color: white;
+    background-color:rgba(68, 62, 62, 0.89);
+    color: gray;
     display: grid;
     grid-template-areas:
     "header header"
     "nav main"
     ;
+    /**rgb(58, 72, 97)**/
 }
-header{
+header {
     grid-area: header;
     border: 2px solid red;
+    margin-left: 60px;
+    width: 90%;
+    align-items: center;
+    text-align: center;
 }
 
 nav {
     grid-area: nav;
+    
+    background-color: rgb(126, 169, 233);
     border: 2px solid purple;
+    margin-left: 60px;
+    padding: 8px;
 }
 
 
-main{
+main {
     grid-area: main;
     border: 2px solid blue;
+    width: 100%
 }
