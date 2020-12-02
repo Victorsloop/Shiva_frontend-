@@ -162,17 +162,18 @@ function handleReviewSubmit(event) {
     const newReview = {
         title: reviewTitle,
         rating: reviewRating,
+        like: 1,
         playtime: reviewPlaytime,
         content: reviewContent, 
         user_id: 1,
         game_id: id
     }
-    addReview(id, newReview)
+    addReview(newReview)
 }
 
 
-const addReview = (id, newReview) => {   
-     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+const addReview = (newReview) => {   
+    fetch(`http://localhost:3000/api/v1/reviews/`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -183,6 +184,12 @@ const addReview = (id, newReview) => {
     .then(console.log)
 }
 
+// fetch(url, { 
+//   method: 'DELETE', 
+//   headers: { 
+//       'Content-type': 'application/json'
+//   } 
+// }); 
 
 /****** Initialize *********/
 getGames()
