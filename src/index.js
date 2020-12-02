@@ -11,6 +11,7 @@ const gameReview = document.querySelector('#game-review')
 const reviewContainer = document.querySelector('#review-container')
 const reviewLike = document.querySelector('#review-like')
 const reviewForm = document.querySelector('#review-form')
+// const reviewRating = document.querySelector('#review-rating')
 
 
 /******** Render Functions ********/
@@ -151,9 +152,10 @@ const updateLike = (id, likeObj) => {
 
 function handleReviewSubmit(event) {
     event.preventDefault()
-    
+    console.log(event.target.rating);
+    const id = reviewForm.dataset.id
     const reviewTitle = event.target.title.value
-    const reviewRating = event.target.rating.value
+    const reviewRating = parseInt(event.target.rating.value)
     const reviewPlaytime = event.target.playtime.value
     const reviewContent = event.target.content.value
 
@@ -162,11 +164,13 @@ function handleReviewSubmit(event) {
         rating: reviewRating,
         playtime: reviewPlaytime,
         content: reviewContent 
+        user_id: 1,
+        game_id: 1
     }
-    addReview(newReview)
+    addReview(id, newReview)
 }
 
-const addReview = (newReview) => {
+const addReview = (id, newReview) => {
     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'POST',
         headers: {
