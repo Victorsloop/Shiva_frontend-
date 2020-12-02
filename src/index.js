@@ -9,8 +9,8 @@ const gameRating = document.querySelector('#game-rating')
 const gameRelease = document.querySelector('#game-release')
 const gameReview = document.querySelector('#game-review')
 const reviewContainer = document.querySelector('#review-container')
-// let updatedLike = ""
 const reviewLike = document.querySelector('#review-like')
+const reviewForm = document.querySelector('#review-form')
 
 
 /******** Render Functions ********/
@@ -27,6 +27,7 @@ function renderAllGames(games) {
 }
 
 function renderOneGame(game) {
+    
     const li = document.createElement('li')
     li.dataset.id = game.id
     li.textContent = `${game.title}`
@@ -37,7 +38,7 @@ function renderOneGame(game) {
 }
 
 function renderGameDetails(gameObj) {
-    
+    reviewForm.dataset.id = gameObj.id
     reviewContainer.dataset.id = gameObj.id // Dislike and like 
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
@@ -85,6 +86,7 @@ function renderGameDetails(gameObj) {
 gameContainer.addEventListener('click', handleGameClick)
 reviewContainer.addEventListener('click', handleLikeButton)
 reviewContainer.addEventListener('click', handleDislikeButton)
+reviewForm.addEventListener('submit', handleReviewSubmit)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -142,6 +144,35 @@ const updateLike = (id, likeObj) => {
             "Content-Type": "application/json"
         },
         body:JSON.stringify(likeObj)
+    })
+    .then(r => r.json())
+    .then(console.log)
+}
+
+function handleReviewSubmit(event) {
+    event.preventDefault()
+    
+    const reviewTitle = event.target.title.value
+    const reviewRating = event.target.rating.value
+    const reviewPlaytime = event.target.playtime.value
+    const reviewContent = event.target.content.value
+
+    const newReview = {
+        title: reviewTitle,
+        rating: reviewRating,
+        playtime: reviewPlaytime,
+        content: reviewContent 
+    }
+    addReview(newReview)
+}
+
+const addReview = (newReview) => {
+    fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(newReview)
     })
     .then(r => r.json())
     .then(console.log)

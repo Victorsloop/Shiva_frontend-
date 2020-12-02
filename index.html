@@ -28,6 +28,28 @@
             <div>
                 <p id="game-description"></p>
             </div>
+            <div>
+                <form id="review-form" data-id= "" autocomplete="off">
+                    <h4>Review the Game</h4>
+                    <label for="name">Game Name: </label>
+                    <input type="text" name="name" id="review-name" />
+                    <label for="name">Platform: </label>
+                    <input type="text" name="platform" id="review-platform" />
+                    <label for="name">Rating: </label>
+                    <select name="review-rate" id="review-rating">
+                        <option value="num1">1</option>
+                        <option value="num2">2</option>
+                        <option value="num3">3</option>
+                        <option value="num4">4</option>
+                        <option value="num5">5</option>
+                    </select>
+                    <label for="name">Playtime: </label>
+                    <input type="text" name="playtime" id="review-playtime" />
+                    <label for="name">Write a Review: </label>
+                    <input type="text" name="content" id="review-content" />
+                    <input type="submit" value="Add Review" />
+                </form>
+            </div>
             <hr>
         </div>
         <div id = "review-container">
@@ -37,6 +59,8 @@
             </ul>
             
         </div>
+
+        
         
     </main>
     
