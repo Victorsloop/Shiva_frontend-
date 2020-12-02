@@ -11,6 +11,12 @@ const gameReview = document.querySelector('#game-review')
 const reviewContainer = document.querySelector('#review-container')
 const reviewLike = document.querySelector('#review-like')
 const reviewForm = document.querySelector('#review-form')
+const globalLikeButton = document.createElement('likebutton')
+globalLikeButton.textContent = '👍'
+const globalDeleteButton = document.createElement('deletebutton')
+globalDeleteButton.textContent = '😵'
+const globalDislikeButton = document.createElement('dislikebutton')
+globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 
 
@@ -53,6 +59,7 @@ function renderGameDetails(gameObj) {
     gameObj.reviews.forEach((review) => {
         const div = document.createElement('div')
         div.dataset.id = review.id
+        // div.className = "content-info"
         const titleH2 = document.createElement('h2')
         const contentP = document.createElement('p')
         const contentLike = document.createElement('p')
@@ -83,7 +90,9 @@ function renderGameDetails(gameObj) {
         gameReview.append(div )
         
         reviewContainer.append(gameReview)
+        
     })
+    
     
     
 }
@@ -173,7 +182,7 @@ function handleReviewSubmit(event) {
         like: 1,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 1,
+        user_id: 4,
         game_id: id
     }
     addReview(newReview)
@@ -189,7 +198,21 @@ const addReview = (newReview) => {
         body:JSON.stringify(newReview)
     })
     .then(r => r.json())
-    .then(console.log)
+    .then(newReview => {
+      const div = document.createElement('div')
+      div.innerHTML = `
+        <h2>${newReview.title}</h2>
+        <p class='likes'>${newReview.content}</p>
+        <h4>${newReview.playtime}</h4>
+        <p>${newReview.like}</p>
+        <h3>${newReview.rating}</h3>
+        ${globalLikeButton.textContent}  
+        ${globalDislikeButton.textContent}
+        ${globalDeleteButton.textContent}
+      `
+      gameReview.append(div)
+      console.log(div);
+    })
 }
 
 function handleDeleteButton(event) {
