@@ -153,7 +153,7 @@ const updateLike = (id, likeObj) => {
 function handleReviewSubmit(event) {
     event.preventDefault()
     console.log(event.target.rating);
-    const id = reviewForm.dataset.id
+    const id = parseInt(reviewForm.dataset.id)
     const reviewTitle = event.target.title.value
     const reviewRating = parseInt(event.target.rating.value)
     const reviewPlaytime = event.target.playtime.value
@@ -163,15 +163,16 @@ function handleReviewSubmit(event) {
         title: reviewTitle,
         rating: reviewRating,
         playtime: reviewPlaytime,
-        content: reviewContent 
+        content: reviewContent, 
         user_id: 1,
-        game_id: 1
+        game_id: id
     }
     addReview(id, newReview)
 }
 
-const addReview = (id, newReview) => {
-    fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+
+const addReview = (id, newReview) => {   
+     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
