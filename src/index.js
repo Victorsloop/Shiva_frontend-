@@ -18,6 +18,7 @@ globalDeleteButton.textContent = '😵'
 const globalDislikeButton = document.createElement('dislikebutton')
 globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
+const toggleSwitch = document.querySelector("#toggle-dark-mode")
 
 
 /******** Render Functions ********/
@@ -104,6 +105,7 @@ reviewContainer.addEventListener('click', handleLikeButton)
 reviewContainer.addEventListener('click', handleDislikeButton)
 reviewContainer.addEventListener('click', handleDeleteButton)
 reviewForm.addEventListener('submit', handleReviewSubmit)
+toggleSwitch.addEventListener('click', handleToggle)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -233,6 +235,10 @@ function handleDeleteButton(event) {
     }
 
 }
+function handleToggle() {
+    console.log("you clicked me")
+    document.body.classList.toggle("dark-mode")
+  }
 
 /****** Initialize *********/
 getGames()
