@@ -1,5 +1,26 @@
+:root {
+    --main-bg-color: #1b82b1;
+    --alt-bg-color: rgba(255, 255, 255, 0.954);
+    --main-font-color: #FFFFFF;
+    --alt-font-color: rgba(0, 0, 0, 0.85);
+    --alt-font-color-light: rgba(0, 0, 0, 0.68);
+    --header-bg-color: blue;
+    --nav-bg-color: rgb(126, 169, 233);
+  }
+  
+  body.dark-mode {
+    --main-bg-color: rgb(0, 0, 0);
+    --alt-bg-color: rgb(22, 21, 21);
+    --main-font-color: #000000;
+    --alt-font-color: rgba(255, 255, 255, 0.85);
+    --alt-font-color-light: rgba(227, 227, 227, 0.68);
+    --header-bg-color: #7965dc;
+    --nav-bg-color: purple
+  }
 body {
-    background-color:rgba(68, 62, 62, 0.89);
+    background-color: var(--main-bg-color);
+    /**background-color:rgba(177, 40, 40, 0.89);
+    /* (68, 62, 62, 0.89) Our original color */
     color: gray;
     display: grid;
     grid-template-areas:
@@ -10,6 +31,8 @@ body {
 }
 header {
     grid-area: header;
+    background-color: var(--header-bg-color);
+    /*background-color: blue; */
     border: 2px solid red;
     margin-left: 60px;
     width: 90%;
@@ -19,8 +42,8 @@ header {
 
 nav {
     grid-area: nav;
-    
-    background-color: rgb(126, 169, 233);
+    background-color: var(--nav-bg-color);
+    /*background-color: rgb(126, 169, 233);*/
     border: 2px solid purple;
     margin-left: 60px;
     padding: 8px;
@@ -28,7 +51,62 @@ nav {
 
 
 main {
+    /*background-color: hotpink; */
     grid-area: main;
     border: 2px solid blue;
     width: 100%
 }
+ .toggle-switch {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0.5rem;
+  }  
+  
+  .toggle-switch input {
+    display: none;
+  }
+  
+  .toggle-switch label {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: var(--alt-bg-color);
+    border-radius: 20px;
+  } 
+
+   .toggle-switch label::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--alt-font-color);
+    top: 1px;
+    left: 1px;
+    transition: all 0.3s;
+  }
+  
+  .toggle-switch input:checked+label::after {
+    left: 20px;
+  }
+  
+  .toggle-switch input:checked+label {
+    background-color: var(--alt-bg-color);
+  } 
+
+  /*#project-title{
+    font-size: 30px;
+    color: #b3bfc9e7;
+    text-align: center;
+    background-color: transparent;
+    text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
+  }  This is a blue edition */
+  #project-title{
+    font-size: 30px;
+    color: #e59797e7;
+    text-align: center;
+    background-color: transparent;
+    text-shadow: 0 0 5px #d10808, 0 0 10px #d10808, 0 0 15px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808;
+  }
