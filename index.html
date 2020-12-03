@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
-    <script src="./src/index.js" defer > </script>
+    <script src="./src/index.js" defer> </script>
     <title>Document</title>
 </head>
+
 <body>
     <header>
-        <h2 id= "project-title">SHIVA PROJECT</h2>
+        <!-- <h2 id= "project-title">SHIVA PROJECT</h2> -->
         <div class="toggle-switch">
             <input type="checkbox" id="toggle-dark-mode">
             <label for="toggle-dark-mode"></label>
-          </div>
+        </div>
+        <div class="topnav">
+            <li id="project-title"><a href="#home">SHIVA PROJECT</a></li>
+            <ul>
+                <li><a class="active" href="#home">Home</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+
     </header>
     <!-- This is for our playable audio -->
     <!-- <embed loop="true" src="./src/amongus.mp3" hidden="true" type="video/quicktime"></embed> -->
-    <audio autoplay="autoplay" >
-        <source src="./src/asong.mp3" />     
+    <audio autoplay="autoplay" controls="controls">
+        <!-- <source src="./src/asong.mp3" /> -->
     </audio>
     <!-- This is the end of our playable audio        -->
 
     <nav>
         <ul id="game-list">
             <h1>Game List</h1>
-            
 
         </ul>
     </nav>
@@ -39,14 +50,15 @@
                 <p id="game-description"></p>
             </div>
             <div>
-                <form id="review-form" data-id= "" autocomplete="off">
+                <form id="review-form" data-id="" autocomplete="off">
                     <h4>Review the Game</h4>
                     <label for="name">Game Name: </label>
                     <input type="title" name="title" id="review-name" />
                     <label for="name">Platform: </label>
                     <input type="text" name="platform" id="review-platform" />
                     <label for="name">Rating: </label>
-                    <input type="text" name="rating" placeholder="Please enter a rating from 1 to 5" id="review-rating" />
+                    <input type="text" name="rating" placeholder="Please enter a rating from 1 to 5"
+                        id="review-rating" />
                     <!-- <select name="review-rate" id="review-rating">
                         <option value="num1">1</option>
                         <option value="num2">2</option>
@@ -63,17 +75,18 @@
             </div>
             <hr>
         </div>
-        <div id = "review-container">
+        <div id="review-container">
             <h3>Reviews</h3>
             <ul id="game-review">
                 <!-- <li></li> -->
             </ul>
-            
+
         </div>
 
-        
-        
+
+
     </main>
-    
+
 </body>
+
 </html>
