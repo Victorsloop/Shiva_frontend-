@@ -11,6 +11,12 @@ const gameReview = document.querySelector('#game-review')
 const reviewContainer = document.querySelector('#review-container')
 const reviewLike = document.querySelector('#review-like')
 const reviewForm = document.querySelector('#review-form')
+const globalLikeButton = document.createElement('likebutton')
+globalLikeButton.textContent = '👍'
+const globalDeleteButton = document.createElement('deletebutton')
+globalDeleteButton.textContent = '😵'
+const globalDislikeButton = document.createElement('dislikebutton')
+globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 
 
@@ -51,12 +57,16 @@ function renderGameDetails(gameObj) {
     gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gameDescription)
 
     gameObj.reviews.forEach((review) => {
-        const titleLi = document.createElement('li')
+        const div = document.createElement('div')
+        div.dataset.id = review.id
+        // div.className = "content-info"
+        const titleH2 = document.createElement('h2')
         const contentP = document.createElement('p')
         const contentLike = document.createElement('p')
         const contentRating = document.createElement('h3')
         const contentPlaytime = document.createElement('h4')
         const likeButton = document.createElement('likebutton')
+        const deleteButton = document.createElement('deletebutton')
         likeButton.className = "like-button"
         likeButton.dataset.id = review.id
         const dislikeButton = document.createElement('dislikebutton')
@@ -64,20 +74,25 @@ function renderGameDetails(gameObj) {
         dislikeButton.dataset.id = review.id
         dislikeButton.textContent = '💩'
         likeButton.textContent = '👍'
+        deleteButton.textContent = '😵'
+        deleteButton.className = 'delete-button'
+        deleteButton.dataset.id = review.id
         contentP.className = 'review-content'
         contentLike.className = 'likes'
 
-        titleLi.textContent = review.title
+        titleH2.textContent = review.title
         contentRating.textContent = review.rating
         contentP.textContent = review.content
         contentPlaytime.textContent = review.playtime
         contentLike.textContent = review.like
         //updatedLike = document.querySelector('.likes')
+        div.append(titleH2,contentP,contentPlaytime, contentLike, contentRating,likeButton, dislikeButton,deleteButton)
+        gameReview.append(div )
         
-        gameReview.append(titleLi,contentP,contentPlaytime, contentLike, contentRating)
+        reviewContainer.append(gameReview)
         
-        reviewContainer.append(gameReview,likeButton, dislikeButton)
     })
+    
     
     
 }
@@ -87,6 +102,7 @@ function renderGameDetails(gameObj) {
 gameContainer.addEventListener('click', handleGameClick)
 reviewContainer.addEventListener('click', handleLikeButton)
 reviewContainer.addEventListener('click', handleDislikeButton)
+reviewContainer.addEventListener('click', handleDeleteButton)
 reviewForm.addEventListener('submit', handleReviewSubmit)
 
 /******** Event Handlers ********/
@@ -103,42 +119,42 @@ function handleGameClick(event) {
 }
 
 function handleLikeButton(event) {
+  // debugger
     const id = event.target.dataset.id
-    const updatedLike = document.querySelector('.likes')
+    const updatedLike = event.target.parentElement.querySelector('.likes')
     const increaseLike = parseInt(updatedLike.textContent) + 1
     
     
     console.log(event.target)
     if (event.target.matches('.like-button')) {
-        updatedLike.textContent = increaseLike
-        }
-
-        const likeObj = {
-            like: increaseLike
-        }
-        
-        updateLike(id, likeObj)
+      const likeObj = {
+          like: increaseLike
+      }
+      // debugger
+      updateLike(id, likeObj, updatedLike, increaseLike)
+      console.log('click');
+      // updatedLike.textContent = increaseLike
+    }
 
 }
 
 function handleDislikeButton(e){
     const id = e.target.dataset.id
-    const updatedLike = document.querySelector('.likes')
+    // debugger
+    const updatedLike = e.target.parentElement.querySelector('.likes')
     const decreaseLike = parseInt(updatedLike.textContent) - 1
-    
     if(e.target.matches('.dislike-button')) {
-        updatedLike.textContent = decreaseLike
+        const likeObj = { 
+            like: decreaseLike
+        }
+        
+        updateLike(id, likeObj, updatedLike, decreaseLike)
+    }
 
-    }
-    
-    const likeObj = {
-        like: decreaseLike
-    }
-    
-    updateLike(id, likeObj)
 }
 
-const updateLike = (id, likeObj) => {
+const updateLike = (id, likeObj, updatedLike, like) => {
+  // debugger
     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'PATCH',
         headers: {
@@ -147,8 +163,9 @@ const updateLike = (id, likeObj) => {
         body:JSON.stringify(likeObj)
     })
     .then(r => r.json())
-    .then(console.log)
+    .then(data => {updatedLike.textContent = like})
 }
+
 
 function handleReviewSubmit(event) {
     event.preventDefault()
@@ -162,17 +179,23 @@ function handleReviewSubmit(event) {
     const newReview = {
         title: reviewTitle,
         rating: reviewRating,
+        like: 1,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 1,
+        user_id: 4,
         game_id: id
     }
-    addReview(id, newReview)
+    addReview(newReview)
 }
 
 
+<<<<<<< HEAD
 const addReview = (id, newReview) => {   
     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+=======
+const addReview = (newReview) => {   
+    fetch(`http://localhost:3000/api/v1/reviews/`,{
+>>>>>>> 6d4d15bd94b4c765f9cae48757a934d65813c9e7
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -180,9 +203,41 @@ const addReview = (id, newReview) => {
         body:JSON.stringify(newReview)
     })
     .then(r => r.json())
-    .then(console.log)
+    .then(newReview => {
+      const div = document.createElement('div')
+      div.innerHTML = `
+        <h2>${newReview.title}</h2>
+        <p class='likes'>${newReview.content}</p>
+        <h4>${newReview.playtime}</h4>
+        <p>${newReview.like}</p>
+        <h3>${newReview.rating}</h3>
+        ${globalLikeButton.textContent}  
+        ${globalDislikeButton.textContent}
+        ${globalDeleteButton.textContent}
+      `
+      gameReview.append(div)
+      console.log(div);
+    })
 }
 
+function handleDeleteButton(event) {
+    //deletebutton.dataset.id = review.id 
+    
+    
+    if (event.target.matches('.delete-button')) {
+        const id = event.target.dataset.id
+        const ul = event.target.closest('ul')
+        fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
+        method: 'DELETE',
+    })
+    .then(r => r.json())
+    .then(deleteReview => {
+        ul.remove();
+    })
+
+    }
+
+}
 
 /****** Initialize *********/
 getGames()
