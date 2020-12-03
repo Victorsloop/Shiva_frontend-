@@ -189,13 +189,8 @@ function handleReviewSubmit(event) {
 }
 
 
-<<<<<<< HEAD
-const addReview = (id, newReview) => {   
-    fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
-=======
 const addReview = (newReview) => {   
     fetch(`http://localhost:3000/api/v1/reviews/`,{
->>>>>>> 6d4d15bd94b4c765f9cae48757a934d65813c9e7
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
