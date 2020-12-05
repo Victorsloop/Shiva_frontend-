@@ -156,6 +156,7 @@ main {
   }
 
   #game-list{
+    list-style-type: none;
     font-size: 15px;
     color: #b3bfc9e7;
     text-align: center;
@@ -168,14 +169,25 @@ main {
     /* flex-direction: column; */
     justify-content: flex-start;
     /* text-align: center; */
-    margin: 0px auto;
-    background-color: #a71111;
-    padding: 10px;
+    /* margin: 0px auto; */
+    background-color: transparent;
+    /* padding: 10px; */
     border-radius: 10px;
+    width: 320px;
+    padding: 110px;
+    border: 5px solid gray;
+    margin: 0;
+    float: center
 
   }
   #game-review{
+    width: 300px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
     text-align: center;
+    /* border: 2px solid black; */
+    background-color: blue;
   }
   /* #game-image {
     position: fixed;
@@ -257,4 +269,28 @@ button {
 }
 form {
   border: 3px solid #f1f1f1;
+}
+
+
+/* card attempts*/ 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; /* 5px rounded corners */
+  align-content: center;
+  /* position: absolute; */
+  padding: 190px;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 10px 10px 10px 10px;
+  float: right;
+  width:  300px;
+  height: 300px;
+  object-fit: cover;
+  
+}
+.game-listnav {
+  /* margin-left:20px; */
 }

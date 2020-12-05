@@ -8,18 +8,19 @@ const gameDescription = document.querySelector('#game-description')
 const gameRating = document.querySelector('#game-rating')
 const gameRelease = document.querySelector('#game-release')
 const gameReview = document.querySelector('#game-review')
+const gamePlatform = document.querySelector('#game-platform')
 const reviewContainer = document.querySelector('#review-container')
 const reviewLike = document.querySelector('#review-like')
 const reviewForm = document.querySelector('#review-form')
-const globalLikeButton = document.createElement('likebutton')
+const globalLikeButton = document.createElement('button')
 globalLikeButton.textContent = '👍'
-const globalDeleteButton = document.createElement('deletebutton')
+const globalDeleteButton = document.createElement('button')
 globalDeleteButton.textContent = '😵'
-const globalDislikeButton = document.createElement('dislikebutton')
+const globalDislikeButton = document.createElement('button')
 globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
-
+const navigationBar = document.querySelector('.topnav')
 
 /******** Render Functions ********/
 const getGames =  () => {
@@ -36,12 +37,32 @@ function renderAllGames(games) {
 
 function renderOneGame(game) {
     
+    
     const li = document.createElement('li')
     li.dataset.id = game.id
     li.textContent = `${game.title}`
 
     
     gameContainer.append(li)
+
+    // gameContainer.innerHTML = ""
+    // if (game.platform === 'Playstation') {
+        
+    //     const li = document.createElement('li')
+    //     li.dataset.id = game.id
+    //     li.textContent = `${game.title}`
+
+    //     gameContainer.append(li)
+    // }
+
+    // else if (game.platform === 'Xbox') {
+        
+    //     const li = document.createElement('li')
+    //     li.dataset.id = game.id
+    //     li.textContent = `${game.title}`
+
+    //     gameContainer.append(li)
+    // }
 
 }
 
@@ -51,11 +72,12 @@ function renderGameDetails(gameObj) {
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
-    gameRating.textContent = parseInt(gameObj.overall_rating)
-    gameRelease.textContent = gameObj.release_date
-    gameDescription.textContent = gameObj.description 
+    gameRating.textContent = `Overall Rating: ${parseInt(gameObj.overall_rating)}`
+    gameRelease.textContent = `Release Date: ${gameObj.release_date}`
+    gamePlatform.textContent = `Platform: ${gameObj.platform}`
+    gameDescription.textContent = gameObj.description
 
-    gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gameDescription)
+    gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gamePlatform, gameDescription)
 
     gameObj.reviews.forEach((review) => {
         const div = document.createElement('div')
@@ -82,20 +104,16 @@ function renderGameDetails(gameObj) {
         contentLike.className = 'likes'
 
         titleH2.textContent = review.title
-        contentRating.textContent = review.rating
-        contentP.textContent = review.content
-        contentPlaytime.textContent = review.playtime
-        contentLike.textContent = review.like
+        contentRating.textContent = `Rating: ${review.rating}`
+        contentP.textContent = `Content: ${review.content}`
+        contentPlaytime.textContent = `Playtime: ${review.playtime}`
+        contentLike.textContent = `Like: ${review.like}`
         //updatedLike = document.querySelector('.likes')
         div.append(titleH2,contentP,contentPlaytime, contentLike, contentRating,likeButton, dislikeButton,deleteButton)
         gameReview.append(div )
         
         reviewContainer.append(gameReview)
-        
     })
-    
-    
-    
 }
 
 
@@ -106,6 +124,10 @@ reviewContainer.addEventListener('click', handleDislikeButton)
 reviewContainer.addEventListener('click', handleDeleteButton)
 reviewForm.addEventListener('submit', handleReviewSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
+navigationBar.addEventListener('click', handlePlaystation)
+navigationBar.addEventListener('click', handleXbox)
+navigationBar.addEventListener('click', handleSwitch)
+navigationBar.addEventListener('click', handlePC)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -218,27 +240,114 @@ const addReview = (newReview) => {
 }
 
 function handleDeleteButton(event) {
-    //deletebutton.dataset.id = review.id 
-    
-    
     if (event.target.matches('.delete-button')) {
         const id = event.target.dataset.id
-        const ul = event.target.closest('ul')
+        const div = event.target.closest('div')
         fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'DELETE',
     })
     .then(r => r.json())
     .then(deleteReview => {
-        ul.remove();
+        div.remove();
     })
 
     }
 
 }
+
+function handlePlaystation(event) {
+    if (event.target.matches('#playstation')) {
+        console.log(event.target.textContent)
+        // gamePlatform
+        fetch('http://localhost:3000/api/v1/games')
+        .then(response => response.json())
+        .then(gameArray => {
+            gameContainer.innerHTML = ""
+            gameArray.forEach((game) => {
+                
+                if (game.platform === "Playstation") {
+                    const li = document.createElement('li')
+                    li.dataset.id = game.id
+                    li.textContent = `${game.title}`
+                
+                    
+                    gameContainer.append(li)
+                }
+            })
+        });
+    }
+}
+
+function handleXbox(event) {
+    if (event.target.matches('#xbox')) {
+        console.log(event.target.textContent)
+        // gamePlatform
+        fetch('http://localhost:3000/api/v1/games')
+        .then(response => response.json())
+        .then(gameArray => {
+            gameContainer.innerHTML = ""
+            gameArray.forEach((game) => {
+                
+                if (game.platform === "Xbox") {
+                    const li = document.createElement('li')
+                    li.dataset.id = game.id
+                    li.textContent = `${game.title}`
+                
+                    
+                    gameContainer.append(li)
+                }
+            })
+        });
+    }
+}
+
+function handleSwitch(event) {
+    if (event.target.matches('#switch')) {
+        console.log(event.target.textContent)
+        fetch('http://localhost:3000/api/v1/games')
+        .then(response => response.json())
+        .then(gameArray => {
+            gameContainer.innerHTML = ""
+            gameArray.forEach((game) => {
+                
+                if (game.platform === "Switch") {
+                    const li = document.createElement('li')
+                    li.dataset.id = game.id
+                    li.textContent = `${game.title}`
+                
+                    
+                    gameContainer.append(li)
+                }
+            })
+        });
+    }
+}
+
+function handlePC(event) {
+    if (event.target.matches('#pc')) {
+        console.log(event.target.textContent)
+        fetch('http://localhost:3000/api/v1/games')
+        .then(response => response.json())
+        .then(gameArray => {
+            gameContainer.innerHTML = ""
+            gameArray.forEach((game) => {
+                
+                if (game.platform === "PC") {
+                    const li = document.createElement('li')
+                    li.dataset.id = game.id
+                    li.textContent = `${game.title}`
+                  
+                    gameContainer.append(li)
+                }
+            })
+        });
+    }
+}
+
 function handleToggle() {
     console.log("you clicked me")
     document.body.classList.toggle("dark-mode")
-  }
+}
 
 /****** Initialize *********/
 getGames()

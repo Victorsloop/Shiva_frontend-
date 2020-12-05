@@ -20,8 +20,10 @@
             <li id="project-title"><a href="#home">SHIVA PROJECT</a></li>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a id="playstation" href="#playstation">Playstation</a></li>
+                <li><a id="xbox" href="#xbox">Xbox</a></li>
+                <li><a id="switch" href="#switch">Switch</a></li>
+                <li><a id="pc" href="#pc">PC</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#login"><button onclick="document.getElementById('id01').style.display='block'">Login</button></a></li>
             </ul> 
@@ -71,21 +73,26 @@ class="close" title="Close Modal">&times;</span>
     </audio>
     <!-- This is the end of our playable audio        -->
 
-    <nav>
+    <nav class= "game-listnav">
         <ul id="game-list" >
             <h1>Game List</h1>
 
         </ul>
     </nav>
     <main>
-        <div id="game-page">
+        <div id="game-page" class= "card" style="width:50%">
             <img id="game-image">
-            <h1 id="game-title"></h1>
-            <h3 id="game-rating"></h3>
-            <h3 id="game-release"></h3>
-            <div>
-                <p id="game-description"></p>
+            <div class= "container">
+
+                <h1 id="game-title"></h1>
+                <h3 id="game-rating"></h3>
+                <h3 id="game-release"></h3>
+                <h3 id="game-platform"></h3>
+                <div>
+                    <p id="game-description"></p>
+                </div>
             </div>
+
             <div>
                 <form id="review-form" data-id="" autocomplete="off">
                     <h4>Review the Game</h4>
