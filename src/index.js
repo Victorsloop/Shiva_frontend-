@@ -29,6 +29,12 @@ const getGames =  () => {
     .then(games => renderAllGames(games))
 }
 
+const getReviews = () => {
+    fetch("http://localhost:3000/api/v1/reviews")
+    .then(r => r.json())
+    .then(reviewArray => calculateRating(reviewArray))
+}
+
 function renderAllGames(games) {
     games.forEach((game) => {
         renderOneGame(game)
@@ -116,6 +122,26 @@ function renderGameDetails(gameObj) {
     })
 }
 
+function calculateRating(reviewArray) {
+    // need id
+    // game_id
+    // reviewArray.forEach(review => {
+        //     review.rating.sum
+        
+        // })
+        
+    //     for (let i = 0; i <= reviewArray.length; i++) {
+    //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
+    //         console.log(sumVariable)
+    //         debugger
+//         }
+    let theReviews = reviewArray.map(review => {
+        let reviewSum = review.rating + review.rating
+        let averageRating = reviewSum / reviewArray.length 
+        
+    })
+    
+} 
 
 /******** Event Listeners ********/
 gameContainer.addEventListener('click', handleGameClick)
@@ -206,7 +232,7 @@ function handleReviewSubmit(event) {
         like: 1,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 4,
+        user_id: 2,
         game_id: id
     }
     addReview(newReview)
@@ -351,3 +377,4 @@ function handleToggle() {
 
 /****** Initialize *********/
 getGames()
+getReviews()
