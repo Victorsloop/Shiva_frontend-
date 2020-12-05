@@ -51,25 +51,6 @@ function renderOneGame(game) {
     
     gameContainer.append(li)
 
-    // gameContainer.innerHTML = ""
-    // if (game.platform === 'Playstation') {
-        
-    //     const li = document.createElement('li')
-    //     li.dataset.id = game.id
-    //     li.textContent = `${game.title}`
-
-    //     gameContainer.append(li)
-    // }
-
-    // else if (game.platform === 'Xbox') {
-        
-    //     const li = document.createElement('li')
-    //     li.dataset.id = game.id
-    //     li.textContent = `${game.title}`
-
-    //     gameContainer.append(li)
-    // }
-
 }
 
 function renderGameDetails(gameObj) {
@@ -85,6 +66,7 @@ function renderGameDetails(gameObj) {
 
     gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gamePlatform, gameDescription)
 
+    gameReview.innerHTML = ""
     gameObj.reviews.forEach((review) => {
         const div = document.createElement('div')
         div.dataset.id = review.id
@@ -213,7 +195,7 @@ const updateLike = (id, likeObj, updatedLike, like) => {
         body:JSON.stringify(likeObj)
     })
     .then(r => r.json())
-    .then(data => {updatedLike.textContent = like})
+    .then(() => {updatedLike.textContent = like})
 }
 
 
