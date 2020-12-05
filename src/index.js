@@ -29,11 +29,11 @@ const getGames =  () => {
     .then(games => renderAllGames(games))
 }
 
-const getReviews = () => {
-    fetch("http://localhost:3000/api/v1/reviews")
-    .then(r => r.json())
-    .then(reviewArray => calculateRating(reviewArray))
-}
+// const getReviews = () => {
+//     fetch("http://localhost:3000/api/v1/reviews")
+//     .then(r => r.json())
+//     .then(reviewArray => calculateRating(reviewArray))
+// }
 
 function renderAllGames(games) {
     games.forEach((game) => {
@@ -95,7 +95,7 @@ function renderGameDetails(gameObj) {
         contentRating.textContent = `Rating: ${review.rating}`
         contentP.textContent = `Content: ${review.content}`
         contentPlaytime.textContent = `Playtime: ${review.playtime}`
-        contentLike.textContent = `Like: ${review.like}`
+        contentLike.textContent = review.like
         //updatedLike = document.querySelector('.likes')
         div.append(titleH2,contentP,contentPlaytime, contentLike, contentRating,likeButton, dislikeButton,deleteButton)
         gameReview.append(div )
@@ -104,26 +104,26 @@ function renderGameDetails(gameObj) {
     })
 }
 
-function calculateRating(reviewArray) {
-    // need id
-    // game_id
-    // reviewArray.forEach(review => {
-        //     review.rating.sum
+// function calculateRating(reviewArray) {
+//     // need id
+//     // game_id
+//     // reviewArray.forEach(review => {
+//         //     review.rating.sum
         
-        // })
+//         // })
         
-    //     for (let i = 0; i <= reviewArray.length; i++) {
-    //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
-    //         console.log(sumVariable)
-    //         debugger
-//         }
-    let theReviews = reviewArray.map(review => {
-        let reviewSum = review.rating + review.rating
-        let averageRating = reviewSum / reviewArray.length 
+//     //     for (let i = 0; i <= reviewArray.length; i++) {
+//     //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
+//     //         console.log(sumVariable)
+//     //         debugger
+// //         }
+//     let theReviews = reviewArray.map(review => {
+//         let reviewSum = review.rating + review.rating
+//         let averageRating = reviewSum / reviewArray.length 
         
-    })
+//     })
     
-} 
+// } 
 
 /******** Event Listeners ********/
 gameContainer.addEventListener('click', handleGameClick)
@@ -151,7 +151,6 @@ function handleGameClick(event) {
 }
 
 function handleLikeButton(event) {
-  // debugger
     const id = event.target.dataset.id
     const updatedLike = event.target.parentElement.querySelector('.likes')
     const increaseLike = parseInt(updatedLike.textContent) + 1
@@ -162,9 +161,10 @@ function handleLikeButton(event) {
       const likeObj = {
           like: increaseLike
       }
-      // debugger
+      
       updateLike(id, likeObj, updatedLike, increaseLike)
       console.log('click');
+      console.log(updatedLike);
       // updatedLike.textContent = increaseLike
     }
 
@@ -172,7 +172,6 @@ function handleLikeButton(event) {
 
 function handleDislikeButton(e){
     const id = e.target.dataset.id
-    // debugger
     const updatedLike = e.target.parentElement.querySelector('.likes')
     const decreaseLike = parseInt(updatedLike.textContent) - 1
     if(e.target.matches('.dislike-button')) {
@@ -186,7 +185,6 @@ function handleDislikeButton(e){
 }
 
 const updateLike = (id, likeObj, updatedLike, like) => {
-  // debugger
     fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'PATCH',
         headers: {
@@ -207,15 +205,17 @@ function handleReviewSubmit(event) {
     const reviewRating = parseInt(event.target.rating.value)
     const reviewPlaytime = event.target.playtime.value
     const reviewContent = event.target.content.value
+    
+    
 
     const newReview = {
         title: reviewTitle,
         rating: reviewRating,
-        like: 1,
+        like: 0,
         playtime: reviewPlaytime,
         content: reviewContent, 
         user_id: 2,
-        game_id: id
+        game_id: 12
     }
     addReview(newReview)
 }
@@ -266,7 +266,6 @@ function handleDeleteButton(event) {
 function handlePlaystation(event) {
     if (event.target.matches('#playstation')) {
         console.log(event.target.textContent)
-        // gamePlatform
         fetch('http://localhost:3000/api/v1/games')
         .then(response => response.json())
         .then(gameArray => {
@@ -359,4 +358,4 @@ function handleToggle() {
 
 /****** Initialize *********/
 getGames()
-getReviews()
+// getReviews()

@@ -19,6 +19,9 @@
   }
 body {
     background-color: var(--main-bg-color);
+    background-image: url("https://image.freepik.com/free-vector/space-game-background-neon-night-alien-landscape_107791-1624.jpg");*/ 
+    /* background-image: url(./src/game_background.jpg); */
+    background-size: auto;
     /**background-color:rgba(177, 40, 40, 0.89);
     /* (68, 62, 62, 0.89) Our original color */
     color: gray;
@@ -234,22 +237,6 @@ main {
   color: red;
   cursor: pointer;
 }
-
-/* Add Zoom Animation */
-/* .animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
-} */
 /* for our login button decore */ 
 button {
   background-color: #4CAF50;
@@ -258,7 +245,7 @@ button {
   margin: 8px 0;
   border: 2px solid green;
   cursor: pointer;
-  width: 100%;
+  width: 60%;
   height: 30%;
   align-items: center;
 }
@@ -301,6 +288,9 @@ img {
 img.avatar {
   width: 40%;
   border-radius: 50%;
+}
+.game-card{
+  background-color: black;
 }
 /* .container{
   width: 100px;
