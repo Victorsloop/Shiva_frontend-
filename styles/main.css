@@ -24,7 +24,10 @@ body {
     background-color: var(--main-bg-color);
     background-image: var(--main-bg-image);
     /* background-image: url(./src/game_background.jpg); */
-    background-size: auto;
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    /* height: 100vh; */
     /**background-color:rgba(177, 40, 40, 0.89);
     /* (68, 62, 62, 0.89) Our original color */
     color: gray;
@@ -170,8 +173,8 @@ main {
     text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
   }
   #review-container{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     /* flex-direction: column; */
     justify-content: flex-start;
     /* text-align: center; */
@@ -179,11 +182,12 @@ main {
     background-color: transparent;
     /* padding: 10px; */
     border-radius: 10px;
-    width: 320px;
-    padding: 110px;
-    border: 5px solid gray;
+    width: 520px;
+    padding: 120x;
+    border: 15px solid gray;
     margin: 0;
-    float: center
+    float: center;
+    background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif")
 
   }
   #game-review{
@@ -191,9 +195,10 @@ main {
     border: 15px solid green;
     padding: 50px;
     margin: 20px;
-    text-align: center;
+    /* text-align: center; */
+    float: center;
     /* border: 2px solid black; */
-    background-color: blue;
+    background-color: transparent;
   }
   /* #game-image {
     position: fixed;

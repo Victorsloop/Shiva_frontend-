@@ -49,11 +49,10 @@ function renderOneGame(game) {
 }
 
 function renderGameDetails(gameObj) {
-    
-    const average = gameObj.reviews.map(review => {
+    let average = gameObj.reviews.map(review => {
         return review.rating 
     })
-    let sum = average.reduce((previous, current) => current += previous, 0);
+    let sum = average.reduce((previous, current) => current += previous, 1);
     let avg = sum / average.length;
     // debugger
     reviewForm.dataset.id = gameObj.id
@@ -191,7 +190,7 @@ function handleReviewSubmit(event) {
         like: 0,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 1,
+        user_id: 2,
         game_id: id
     }
     addReview(newReview)
@@ -281,7 +280,7 @@ function handleConsole(event) {
         .then(gameArray => {
             gameContainer.innerHTML = ""
             const h1 = document.createElement('h1')
-            h1.textContent = 'Game List'
+            h1.textContent = 'Game List (Playstation)'
             gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
@@ -302,7 +301,7 @@ function handleConsole(event) {
         .then(gameArray => {
             gameContainer.innerHTML = ""
             const h1 = document.createElement('h1')
-            h1.textContent = 'Game List'
+            h1.textContent = 'Game List (Xbox)'
             gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
@@ -323,7 +322,7 @@ function handleConsole(event) {
         .then(gameArray => {
             gameContainer.innerHTML = ""
             const h1 = document.createElement('h1')
-            h1.textContent = 'Game List'
+            h1.textContent = 'Game List (Switch)'
             gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
@@ -344,7 +343,7 @@ function handleConsole(event) {
         .then(gameArray => {
             gameContainer.innerHTML = ""
             const h1 = document.createElement('h1')
-            h1.textContent = 'Game List'
+            h1.textContent = 'Game List (PC)'
             gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
