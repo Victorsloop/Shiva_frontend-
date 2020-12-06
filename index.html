@@ -198,7 +198,7 @@
 
 
         </div>
-        <div id="game-page" class= "card" style="width:50%">
+        <div id="game-page" class= "card" style="width:60%">
             <img id="game-image">
             <div class= "container">
 
@@ -211,23 +211,16 @@
                 </div>
             </div>
 
-            <div>
+            <div class="sideBySideForm">
                 <form id="review-form" autocomplete="off">
-                    <h4>Review the Game</h4>
-                    <label for="name">Game Name: </label>
+                    <h4>Review a Game</h4>
+                    <label for="name">Game Title: </label>
                     <input type="title" name="title" id="review-name" />
                     <label for="name">Platform: </label>
                     <input type="text" name="platform" id="review-platform" />
                     <label for="name">Rating: </label>
                     <input type="text" name="rating" placeholder="Please enter a rating from 1 to 5"
                         id="review-rating" />
-                    <!-- <select name="review-rate" id="review-rating">
-                        <option value="num1">1</option>
-                        <option value="num2">2</option>
-                        <option value="num3">3</option>
-                        <option value="num4">4</option>
-                        <option value="num5">5</option>
-                    </select> -->
                     <label for="name">Playtime: </label>
                     <input type="text" name="playtime" id="review-playtime" />
                     <label for="name">Write a Review: </label>
@@ -235,8 +228,24 @@
                     <input type="submit" value="Add Review" />
                 </form>
             </div>
-            <hr>
-        </div>
+            <div class="sideBySideForm">
+                <form id="game-form" autocomplete="off">
+                    <h4>Add a Game</h4>
+                    <label for="name">Game Title: </label>
+                    <input type="title" name="title" id="new-game-title" />
+                    <label for="name">Game Description: </label>
+                    <input type="text" name="description" id="new-game-description" />
+                    <label for="name">Game Platform: </label>
+                    <input type="text" name="platform" id="new-game-platform" />
+                    <label for="name">Game Release Date: </label>
+                    <input type="text" name="releasedate" id="new-game-releasedate" placeholder="Ex. September 22nd, 1988" />
+                    <label for="name">Game Image: </label>
+                    <input type="text" name="image" id="new-game-image" />
+                    <input type="submit" value="Add Game" />
+                </form>
+            </div>
+          </div>
+          <hr>
         <div id="review-container">
             <h3>Reviews</h3>
             <ul id="game-review">
@@ -244,7 +253,7 @@
             </ul>
 
         </div>
-
+      </hr>
 
 
     </main>

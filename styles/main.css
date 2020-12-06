@@ -295,6 +295,12 @@ img.avatar {
 .game-card{
   background-color: black;
 }
+/* This one is the class placed one new gameform and new reviewform */
+.sideBySideForm{
+  display: inline-block;
+  width: 80%;
+  height: 70%;
+  }
 /* .container{
   width: 100px;
   height: 50px;

@@ -12,6 +12,7 @@ const gamePlatform = document.querySelector('#game-platform')
 const reviewContainer = document.querySelector('#review-container')
 const reviewLike = document.querySelector('#review-like')
 const reviewForm = document.querySelector('#review-form')
+const gameForm = document.querySelector('#game-form')
 const globalLikeButton = document.createElement('button')
 globalLikeButton.textContent = '👍'
 const globalDeleteButton = document.createElement('button')
@@ -21,7 +22,6 @@ globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
 const navigationBar = document.querySelector('.topnav')
-const avgRating = ""
 
 /******** Render Functions ********/
 const getGames =  () => {
@@ -49,18 +49,20 @@ function renderOneGame(game) {
 }
 
 function renderGameDetails(gameObj) {
-    // const average = gameObj.reviews.map(review => {
-    //     return review.rating 
-    // })
-    // let sum = average.reduce((previous, current) => current += previous);
-    // let avg = sum / average.length;
+    
+    const average = gameObj.reviews.map(review => {
+        return review.rating 
+    })
+    let sum = average.reduce((previous, current) => current += previous, 0);
+    let avg = sum / average.length;
+    // debugger
     reviewForm.dataset.id = gameObj.id
     reviewContainer.dataset.id = gameObj.id // Dislike and like 
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
     
-    // gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
+    gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
     gameRelease.textContent = `Release Date: ${gameObj.release_date}`
     gamePlatform.textContent = `Platform: ${gameObj.platform}`
     gameDescription.textContent = gameObj.description  
@@ -112,6 +114,7 @@ reviewContainer.addEventListener('click', handleLikeButton)
 reviewContainer.addEventListener('click', handleDislikeButton)
 reviewContainer.addEventListener('click', handleDeleteButton)
 reviewForm.addEventListener('submit', handleReviewSubmit)
+gameForm.addEventListener('submit', handleGameSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
 navigationBar.addEventListener('click', handleConsole)
 
@@ -219,6 +222,41 @@ const addReview = (newReview) => {
     gameReview.append(div)
     console.log(div);
     })
+}
+
+function handleGameSubmit(event) {
+    event.preventDefault()
+    // const id = parseInt(gameForm.dataset.id)
+    const newGameTitle = event.target.title.value
+    const newGameDescription = event.target.description.value
+    const newGamePlatform = event.target.platform.value
+    const newGameReleasedate = event.target.releasedate.value
+    const newGameImage = event.target.image.value
+    
+    
+
+    const newGame = {
+        title: newGameTitle,
+        description: newGameDescription,
+        platform: newGamePlatform,
+        release_date: newGameReleasedate,
+        image: newGameImage, 
+    }
+    addGame(newGame)
+}
+
+function addGame(newGame) {
+fetch('http://localhost:3000/api/v1/games', {
+  method: 'POST', 
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(newGame),
+})
+.then(response => response.json())
+.then(newGameObj => {
+  renderOneGame(newGameObj);
+})
 }
 
 function handleDeleteButton(event) {
