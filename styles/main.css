@@ -1,6 +1,8 @@
 :root {
     --main-bg-color: #1b82b1;
+    --main-bg-image: url("https://image.freepik.com/free-vector/space-game-background-neon-night-alien-landscape_107791-1624.jpg");
     --alt-bg-color: rgba(255, 255, 255, 0.954);
+    --alt-bg-image: url("https://psitriangle.net/gallery/plog-content/images/sacred-geometry/exhibit-theta/infinitecosmos01_1600x1125.png");
     --main-font-color: #FFFFFF;
     --alt-font-color: rgba(0, 0, 0, 0.85);
     --alt-font-color-light: rgba(0, 0, 0, 0.68);
@@ -11,6 +13,7 @@
   body.dark-mode {
     --main-bg-color: rgb(0, 0, 0);
     --alt-bg-color: rgb(22, 21, 21);
+    --main-bg-image: var(--alt-bg-image);
     --main-font-color: #000000;
     --alt-font-color: rgba(255, 255, 255, 0.85);
     --alt-font-color-light: rgba(227, 227, 227, 0.68);
@@ -19,7 +22,7 @@
   }
 body {
     background-color: var(--main-bg-color);
-    background-image: url("https://image.freepik.com/free-vector/space-game-background-neon-night-alien-landscape_107791-1624.jpg");*/ 
+    background-image: var(--main-bg-image);
     /* background-image: url(./src/game_background.jpg); */
     background-size: auto;
     /**background-color:rgba(177, 40, 40, 0.89);

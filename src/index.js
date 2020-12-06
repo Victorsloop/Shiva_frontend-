@@ -29,11 +29,11 @@ const getGames =  () => {
     .then(games => renderAllGames(games))
 }
 
-// const getReviews = () => {
-//     fetch("http://localhost:3000/api/v1/reviews")
-//     .then(r => r.json())
-//     .then(reviewArray => calculateRating(reviewArray))
-// }
+const getReviews = () => {
+    fetch("http://localhost:3000/api/v1/reviews")
+    .then(r => r.json())
+    .then(reviewArray => calculateRating(reviewArray))
+}
 
 function renderAllGames(games) {
     games.forEach((game) => {
@@ -76,11 +76,11 @@ function renderGameDetails(gameObj) {
         const contentLike = document.createElement('p')
         const contentRating = document.createElement('h3')
         const contentPlaytime = document.createElement('h4')
-        const likeButton = document.createElement('likebutton')
-        const deleteButton = document.createElement('deletebutton')
+        const likeButton = document.createElement('button')
+        const deleteButton = document.createElement('button')
         likeButton.className = "like-button"
         likeButton.dataset.id = review.id
-        const dislikeButton = document.createElement('dislikebutton')
+        const dislikeButton = document.createElement('button')
         dislikeButton.className = "dislike-button"
         dislikeButton.dataset.id = review.id
         dislikeButton.textContent = '💩'
@@ -92,10 +92,10 @@ function renderGameDetails(gameObj) {
         contentLike.className = 'likes'
 
         titleH2.textContent = review.title
-        contentRating.textContent = `Rating: ${review.rating}`
+        contentRating.textContent = `${review.rating}/5 Rating`
         contentP.textContent = `Content: ${review.content}`
-        contentPlaytime.textContent = `Playtime: ${review.playtime}`
-        contentLike.textContent = review.like
+        contentPlaytime.textContent = `Playtime: ${review.playtime} Hours`
+        contentLike.textContent = `${review.like} Likes`
         //updatedLike = document.querySelector('.likes')
         div.append(titleH2,contentP,contentPlaytime, contentLike, contentRating,likeButton, dislikeButton,deleteButton)
         gameReview.append(div )
@@ -104,7 +104,7 @@ function renderGameDetails(gameObj) {
     })
 }
 
-// function calculateRating(reviewArray) {
+function calculateRating(reviewArray) {
 //     // need id
 //     // game_id
 //     // reviewArray.forEach(review => {
@@ -117,13 +117,12 @@ function renderGameDetails(gameObj) {
 //     //         console.log(sumVariable)
 //     //         debugger
 // //         }
-//     let theReviews = reviewArray.map(review => {
-//         let reviewSum = review.rating + review.rating
-//         let averageRating = reviewSum / reviewArray.length 
-        
-//     })
-    
-// } 
+    let theReviews = reviewArray.map(review => {
+        let reviewSum = review.rating + review.rating
+        let averageRating = reviewSum / reviewArray.length 
+    })
+} 
+
 
 /******** Event Listeners ********/
 gameContainer.addEventListener('click', handleGameClick)
@@ -132,10 +131,7 @@ reviewContainer.addEventListener('click', handleDislikeButton)
 reviewContainer.addEventListener('click', handleDeleteButton)
 reviewForm.addEventListener('submit', handleReviewSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
-navigationBar.addEventListener('click', handlePlaystation)
-navigationBar.addEventListener('click', handleXbox)
-navigationBar.addEventListener('click', handleSwitch)
-navigationBar.addEventListener('click', handlePC)
+navigationBar.addEventListener('click', handleConsole)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -155,19 +151,17 @@ function handleLikeButton(event) {
     const updatedLike = event.target.parentElement.querySelector('.likes')
     const increaseLike = parseInt(updatedLike.textContent) + 1
     
-    
     console.log(event.target)
     if (event.target.matches('.like-button')) {
-      const likeObj = {
-          like: increaseLike
-      }
-      
-      updateLike(id, likeObj, updatedLike, increaseLike)
-      console.log('click');
-      console.log(updatedLike);
+        const likeObj = {
+            like: increaseLike
+        }
+        
+        updateLike(id, likeObj, updatedLike, increaseLike)
+    //   console.log('click');
+    //   console.log(updatedLike);
       // updatedLike.textContent = increaseLike
     }
-
 }
 
 function handleDislikeButton(e){
@@ -181,7 +175,6 @@ function handleDislikeButton(e){
         
         updateLike(id, likeObj, updatedLike, decreaseLike)
     }
-
 }
 
 const updateLike = (id, likeObj, updatedLike, like) => {
@@ -193,13 +186,15 @@ const updateLike = (id, likeObj, updatedLike, like) => {
         body:JSON.stringify(likeObj)
     })
     .then(r => r.json())
-    .then(() => {updatedLike.textContent = like})
+    .then(() => {
+        updatedLike.textContent = `${like} Likes`
+    })
 }
 
 
 function handleReviewSubmit(event) {
     event.preventDefault()
-    console.log(event.target.rating);
+    // console.log(event.target.rating);
     const id = parseInt(reviewForm.dataset.id)
     const reviewTitle = event.target.title.value
     const reviewRating = parseInt(event.target.rating.value)
@@ -214,8 +209,8 @@ function handleReviewSubmit(event) {
         like: 0,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 2,
-        game_id: 12
+        user_id: 5,
+        game_id: id
     }
     addReview(newReview)
 }
@@ -231,19 +226,19 @@ const addReview = (newReview) => {
     })
     .then(r => r.json())
     .then(newReview => {
-      const div = document.createElement('div')
-      div.innerHTML = `
+    const div = document.createElement('div')
+    div.innerHTML = `
         <h2>${newReview.title}</h2>
-        <p class='likes'>${newReview.content}</p>
-        <h4>${newReview.playtime}</h4>
-        <p>${newReview.like}</p>
-        <h3>${newReview.rating}</h3>
+        <p class='likes'>Content: ${newReview.content}</p>
+        <h4>Playtime: ${newReview.playtime} Hours</h4>
+        <p>${newReview.like} Likes</p>
+        <h3>${newReview.rating} Rating</h3>
         ${globalLikeButton.textContent}  
         ${globalDislikeButton.textContent}
         ${globalDeleteButton.textContent}
-      `
-      gameReview.append(div)
-      console.log(div);
+    `
+    gameReview.append(div)
+    console.log(div);
     })
 }
 
@@ -253,97 +248,94 @@ function handleDeleteButton(event) {
         const div = event.target.closest('div')
         fetch(`http://localhost:3000/api/v1/reviews/${id}`,{
         method: 'DELETE',
-    })
-    .then(r => r.json())
-    .then(deleteReview => {
-        div.remove();
-    })
-
+        })
+        .then(r => r.json())
+        .then(() => {
+            div.remove();
+        })
     }
-
 }
 
-function handlePlaystation(event) {
+function handleConsole(event) {
     if (event.target.matches('#playstation')) {
         console.log(event.target.textContent)
         fetch('http://localhost:3000/api/v1/games')
         .then(response => response.json())
         .then(gameArray => {
             gameContainer.innerHTML = ""
+            const h1 = document.createElement('h1')
+            h1.textContent = 'Game List'
+            gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
                 if (game.platform === "Playstation") {
                     const li = document.createElement('li')
                     li.dataset.id = game.id
                     li.textContent = `${game.title}`
-                
-                    
+
                     gameContainer.append(li)
                 }
             })
         });
     }
-}
-
-function handleXbox(event) {
     if (event.target.matches('#xbox')) {
         console.log(event.target.textContent)
-        // gamePlatform
         fetch('http://localhost:3000/api/v1/games')
         .then(response => response.json())
         .then(gameArray => {
             gameContainer.innerHTML = ""
+            const h1 = document.createElement('h1')
+            h1.textContent = 'Game List'
+            gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
                 if (game.platform === "Xbox") {
                     const li = document.createElement('li')
                     li.dataset.id = game.id
                     li.textContent = `${game.title}`
-                
-                    
+
                     gameContainer.append(li)
                 }
             })
         });
     }
-}
-
-function handleSwitch(event) {
     if (event.target.matches('#switch')) {
         console.log(event.target.textContent)
         fetch('http://localhost:3000/api/v1/games')
         .then(response => response.json())
         .then(gameArray => {
             gameContainer.innerHTML = ""
+            const h1 = document.createElement('h1')
+            h1.textContent = 'Game List'
+            gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
                 if (game.platform === "Switch") {
                     const li = document.createElement('li')
                     li.dataset.id = game.id
                     li.textContent = `${game.title}`
-                
-                    
+
                     gameContainer.append(li)
                 }
             })
         });
     }
-}
-
-function handlePC(event) {
     if (event.target.matches('#pc')) {
         console.log(event.target.textContent)
         fetch('http://localhost:3000/api/v1/games')
         .then(response => response.json())
         .then(gameArray => {
             gameContainer.innerHTML = ""
+            const h1 = document.createElement('h1')
+            h1.textContent = 'Game List'
+            gameContainer.append(h1)
             gameArray.forEach((game) => {
                 
                 if (game.platform === "PC") {
                     const li = document.createElement('li')
                     li.dataset.id = game.id
                     li.textContent = `${game.title}`
-                  
+
                     gameContainer.append(li)
                 }
             })

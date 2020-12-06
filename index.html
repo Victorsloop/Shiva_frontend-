@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Hover attempt  -->
     <style>
-        body {font-family: Arial, Helvetica, sans-serif; }
+        body {font-family: 'Times New Roman', Times, serif; }
         
         /* Full-width input fields */
         input[type=text], input[type=password] {
@@ -39,6 +39,7 @@
         
         .container {
           padding: 16px;
+          display: block;
         }
         
         span.psw {
@@ -49,7 +50,7 @@
         /* The Modal (background) */
         .modal {
           display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
+          position: fixed; /* fixed :Stay in place */
           z-index: 1; /* Sit on top */
           left: 0;
           top: 0;
@@ -59,6 +60,8 @@
           background-color: rgb(0,0,0); /* Fallback color */
           background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
           padding-top: 60px;
+          margin-left: auto;
+        margin-right: auto;
         }
         
         /* Modal Content/Box */
@@ -126,7 +129,7 @@
             <label for="toggle-dark-mode"></label>
         </div>
         <div class="topnav">
-            <li id="project-title"><a href="#home">SHIVA PROJECT</a></li>
+            <li id="project-title"><a href="#home">THE SHIVA PROJECT</a></li>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
                 <li><a id="playstation" href="#playstation">Playstation</a></li>
@@ -209,7 +212,7 @@
             </div>
 
             <div>
-                <form id="review-form" data-id= "" autocomplete="off">
+                <form id="review-form" autocomplete="off">
                     <h4>Review the Game</h4>
                     <label for="name">Game Name: </label>
                     <input type="title" name="title" id="review-name" />
