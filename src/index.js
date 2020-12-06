@@ -30,12 +30,6 @@ const getGames =  () => {
     .then(games => renderAllGames(games))
 }
 
-// const getReviews = () => {
-//     fetch("http://localhost:3000/api/v1/reviews")
-//     .then(r => r.json())
-//     .then(reviewArray => calculateRating(reviewArray))
-// }
-
 function renderAllGames(games) {
     games.forEach((game) => {
         renderOneGame(game)
@@ -55,38 +49,21 @@ function renderOneGame(game) {
 }
 
 function renderGameDetails(gameObj) {
+    // const average = gameObj.reviews.map(review => {
+    //     return review.rating 
+    // })
+    // let sum = average.reduce((previous, current) => current += previous);
+    // let avg = sum / average.length;
     reviewForm.dataset.id = gameObj.id
     reviewContainer.dataset.id = gameObj.id // Dislike and like 
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
-    const average = gameObj.reviews.map(review => {
-        return review.rating 
-    })
-    let sum = average.reduce((previous, current) => current += previous);
-    let avg = sum / average.length;
-    gameRating.textContent = `Overall Rating: ${avg}`
+    
+    // gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
     gameRelease.textContent = `Release Date: ${gameObj.release_date}`
     gamePlatform.textContent = `Platform: ${gameObj.platform}`
-    gameDescription.textContent = gameObj.description
-
-
-    // let theReviews = reviewArray.map(review => {
-    //     //         let reviewSum = review.rating + review.rating
-    //     //         let averageRating = reviewSum / reviewArray.length 
-    //     //         avgRating = averageRating
-    // })
-
-//     const average = gameObj.reviews.map(review => {
-//         return review.rating 
-//     })
-
-// let sum = average.reduce((previous, current) => current += previous);
-// let avg = sum / average.length;
-
-
-
-    
+    gameDescription.textContent = gameObj.description  
 
     gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gamePlatform, gameDescription)
 
@@ -128,27 +105,6 @@ function renderGameDetails(gameObj) {
     })
 }
 
-// function calculateRating(reviewArray) {
-// //     // need id
-// //     // game_id
-// //     // reviewArray.forEach(review => {
-// //         //     review.rating.sum
-        
-// //         // })
-        
-// //     //     for (let i = 0; i <= reviewArray.length; i++) {
-// //     //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
-// //     //         console.log(sumVariable)
-// //     //         debugger
-// // //         }
-//     let theReviews = reviewArray.map(review => {
-//         let reviewSum = review.rating + review.rating
-//         let averageRating = reviewSum / reviewArray.length 
-//         avgRating = averageRating
-        
-//     })
-// } 
-
 
 /******** Event Listeners ********/
 gameContainer.addEventListener('click', handleGameClick)
@@ -184,9 +140,6 @@ function handleLikeButton(event) {
         }
         
         updateLike(id, likeObj, updatedLike, increaseLike)
-    //   console.log('click');
-    //   console.log(updatedLike);
-      // updatedLike.textContent = increaseLike
     }
 }
 
@@ -376,4 +329,3 @@ function handleToggle() {
 
 /****** Initialize *********/
 getGames()
-// getReviews()
