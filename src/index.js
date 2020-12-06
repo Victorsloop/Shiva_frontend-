@@ -21,6 +21,7 @@ globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
 const navigationBar = document.querySelector('.topnav')
+const avgRating = ""
 
 /******** Render Functions ********/
 const getGames =  () => {
@@ -29,11 +30,11 @@ const getGames =  () => {
     .then(games => renderAllGames(games))
 }
 
-const getReviews = () => {
-    fetch("http://localhost:3000/api/v1/reviews")
-    .then(r => r.json())
-    .then(reviewArray => calculateRating(reviewArray))
-}
+// const getReviews = () => {
+//     fetch("http://localhost:3000/api/v1/reviews")
+//     .then(r => r.json())
+//     .then(reviewArray => calculateRating(reviewArray))
+// }
 
 function renderAllGames(games) {
     games.forEach((game) => {
@@ -59,10 +60,33 @@ function renderGameDetails(gameObj) {
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
-    gameRating.textContent = `Overall Rating: ${parseInt(gameObj.overall_rating)}`
+    const average = gameObj.reviews.map(review => {
+        return review.rating 
+    })
+    let sum = average.reduce((previous, current) => current += previous);
+    let avg = sum / average.length;
+    gameRating.textContent = `Overall Rating: ${avg}`
     gameRelease.textContent = `Release Date: ${gameObj.release_date}`
     gamePlatform.textContent = `Platform: ${gameObj.platform}`
     gameDescription.textContent = gameObj.description
+
+
+    // let theReviews = reviewArray.map(review => {
+    //     //         let reviewSum = review.rating + review.rating
+    //     //         let averageRating = reviewSum / reviewArray.length 
+    //     //         avgRating = averageRating
+    // })
+
+//     const average = gameObj.reviews.map(review => {
+//         return review.rating 
+//     })
+
+// let sum = average.reduce((previous, current) => current += previous);
+// let avg = sum / average.length;
+
+
+
+    
 
     gamePage.append(gameImage, gameTitle, gameRating, gameRelease, gamePlatform, gameDescription)
 
@@ -104,24 +128,26 @@ function renderGameDetails(gameObj) {
     })
 }
 
-function calculateRating(reviewArray) {
-//     // need id
-//     // game_id
-//     // reviewArray.forEach(review => {
-//         //     review.rating.sum
+// function calculateRating(reviewArray) {
+// //     // need id
+// //     // game_id
+// //     // reviewArray.forEach(review => {
+// //         //     review.rating.sum
         
-//         // })
+// //         // })
         
-//     //     for (let i = 0; i <= reviewArray.length; i++) {
-//     //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
-//     //         console.log(sumVariable)
-//     //         debugger
-// //         }
-    let theReviews = reviewArray.map(review => {
-        let reviewSum = review.rating + review.rating
-        let averageRating = reviewSum / reviewArray.length 
-    })
-} 
+// //     //     for (let i = 0; i <= reviewArray.length; i++) {
+// //     //         const sumVariable = reviewArray[i].rating + reviewArray[i].rating
+// //     //         console.log(sumVariable)
+// //     //         debugger
+// // //         }
+//     let theReviews = reviewArray.map(review => {
+//         let reviewSum = review.rating + review.rating
+//         let averageRating = reviewSum / reviewArray.length 
+//         avgRating = averageRating
+        
+//     })
+// } 
 
 
 /******** Event Listeners ********/
@@ -209,7 +235,7 @@ function handleReviewSubmit(event) {
         like: 0,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 5,
+        user_id: 1,
         game_id: id
     }
     addReview(newReview)
