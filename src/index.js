@@ -52,16 +52,21 @@ function renderGameDetails(gameObj) {
     let average = gameObj.reviews.map(review => {
         return review.rating 
     })
-    let sum = average.reduce((previous, current) => current += previous, 1);
+    if (average.length > 0) {
+    let sum = average.reduce((previous, current) => current + previous, 0);
     let avg = sum / average.length;
-    // debugger
+    gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
+    }
+    else if (average.length === 0) {
+        gameRating.textContent = `Overall Rating: 0`
+    }
     reviewForm.dataset.id = gameObj.id
     reviewContainer.dataset.id = gameObj.id // Dislike and like 
     gameImage.src = gameObj.image
     gameImage.alt = gameObj.title
     gameTitle.textContent = gameObj.title
     
-    gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
+    // gameRating.textContent = `Overall Rating: ${avg.toFixed(1)}`
     gameRelease.textContent = `Release Date: ${gameObj.release_date}`
     gamePlatform.textContent = `Platform: ${gameObj.platform}`
     gameDescription.textContent = gameObj.description  
