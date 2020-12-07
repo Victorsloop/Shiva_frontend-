@@ -22,6 +22,7 @@ globalDislikeButton.textContent = '💩'
 // const reviewRating = document.querySelector('#review-rating')
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
 const navigationBar = document.querySelector('.topnav')
+const pageAbout = document.querySelector('#about')
 
 /******** Render Functions ********/
 const getGames =  () => {
@@ -121,6 +122,7 @@ reviewForm.addEventListener('submit', handleReviewSubmit)
 gameForm.addEventListener('submit', handleGameSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
 navigationBar.addEventListener('click', handleConsole)
+pageAbout.addEventListener('click', handlePageAbout)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -362,6 +364,11 @@ function handleConsole(event) {
             })
         });
     }
+}
+
+function handlePageAbout (event) {
+    if (event.target.matches ('#about'))
+    console.log('click')
 }
 
 function handleToggle() {

@@ -66,7 +66,8 @@ main {
     /*background-color: hotpink; */
     grid-area: main;
     border: 2px solid blue; 
-    width: 100%
+    width: 100%;
+    color: white
 }
  .toggle-switch {
     position: fixed;

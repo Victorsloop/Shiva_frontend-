@@ -139,8 +139,35 @@
                 <li><a id="pc" href="#pc">PC</a></li>
                 <!-- <li><a href="#about">About</a></li> -->
                 <li style="float: right;"><a href="#login"><Login onclick="document.getElementById('id01').style.display='block'">Login</button></a></li>
+                
+            <!-- overlay attempt  -->
+            <div id="myNav" class="overlay">
+              <a  href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <div class="overlay-content">
+                <a id="about"href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Sort by Rating</a>
+                <a href="#">Sort by Reviews</a>
+              </div>
+            </div>
+            <span style="font-size:30px;cursor:pointer;float:right; display: inline-block;text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;" onclick="openNav()">&#9776;</span>
+
+              <script>
+                  function openNav() {
+                  document.getElementById("myNav").style.width = "100%";
+                }
+
+                  function closeNav() {
+                  document.getElementById("myNav").style.width = "0%";
+                }
+              </script>
+            <!-- overlay attempt end -->
+
             </ul> 
+
             <!-- Attempt at login button and css  -->
+
+            
             <!-- Button to open the modal login form -->
 <!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button> -->
             
@@ -158,28 +185,6 @@
     <nav class= "game-listnav">
         <ul id="game-list" >
             <h1>Game List</h1>
-            <!-- overlay attempt  -->
-            <div id="myNav" class="overlay">
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              <div class="overlay-content">
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Sort by Rating</a>
-                <a href="#">Sort by Reviews</a>
-              </div>
-            </div>
-            <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Click Me</span>
-
-              <script>
-                  function openNav() {
-                  document.getElementById("myNav").style.width = "100%";
-                }
-
-                  function closeNav() {
-                  document.getElementById("myNav").style.width = "0%";
-                }
-              </script>
-            <!-- overlay attempt end -->
 
         </ul>
     </nav>
@@ -221,7 +226,7 @@
 
 
         </div>
-        <div id="game-page" class= "card" style="width:60%">
+        <div id="game-page" class= "card" style="width:60%; display: none">
             <img id="game-image">
             <div class= "container">
 
