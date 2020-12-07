@@ -48,6 +48,8 @@ function renderOneGame(game) {
     gameContainer.append(li)
 
 }
+// some pseudo code; 
+// On initial render display should be none. On game click display: none should be removed
 
 function renderGameDetails(gameObj) {
     let average = gameObj.reviews.map(review => {
@@ -132,7 +134,11 @@ function handleGameClick(event) {
         
         fetch(`http://localhost:3000/api/v1/games/${id}`)
         .then(r => r.json())
-        .then(gameObj => renderGameDetails(gameObj))
+        .then(gameObj => { 
+            gamePage.style.display = 'initial'
+            // gameReview.style.display = 'initial'
+            renderGameDetails(gameObj)
+        })
         
     }
 }
@@ -367,8 +373,9 @@ function handleConsole(event) {
 }
 
 function handlePageAbout (event) {
-    if (event.target.matches ('#about'))
-    console.log('click')
+    if (event.target.matches ('#about')) {
+    
+}
 }
 
 function handleToggle() {

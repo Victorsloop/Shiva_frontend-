@@ -67,7 +67,8 @@ main {
     grid-area: main;
     border: 2px solid blue; 
     width: 100%;
-    color: white
+    color: white;
+    font-size: 20px;
 }
  .toggle-switch {
     position: fixed;
@@ -191,8 +192,8 @@ main {
     background-color: transparent;
     /* padding: 10px; */
     border-radius: 10px;
-    width: 520px;
-    padding: 120x;
+    width: 720px;
+    padding: 520x;
     border: 15px solid gray;
     margin: 0;
     float: center;
@@ -206,7 +207,7 @@ main {
   }
   #game-review{
     width: 300px;
-    border: 15px solid green;
+    /* border: 15px solid green; */
     padding: 50px;
     margin: 20px;
     /* text-align: center; */
@@ -317,8 +318,8 @@ img.avatar {
 /* This one is the class placed one new gameform and new reviewform */
 .sideBySideForm{
   display: inline-block;
-  width: 80%;
-  height: 70%;
+  width: 40%;
+  height: 40%;
   box-sizing: border-box;
   }
   input[type=text] {
@@ -384,17 +385,25 @@ img.avatar {
     top: 15px;
     right: 35px;
     }
-
-    /* li a{
-      float: left;
+    div.gallery {
+      margin: 10px;
+      border: 10px solid green;
+      /* float: right; */
+      width: 180px;
+      /* display: inline-block; */
+    
     }
-    a{
-      float: left;
-    } */
-/* .container{
-  width: 100px;
-  height: 50px;
-  position:fixed; 
-  top: calc(50% - 25px); // half of width
-  left: calc(50% - 50px); // half of height
-} */
+    
+    div.gallery:hover {
+      border: 10px solid green;
+    }
+    
+    div.gallery img {
+      width: 100%;
+      height: auto%;
+    }
+    
+    div.desc {
+      padding: 15px;
+      text-align: center;
+    }
