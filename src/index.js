@@ -23,7 +23,8 @@ globalDislikeButton.textContent = '💩'
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
 const navigationBar = document.querySelector('.topnav')
 const pageAbout = document.querySelector('#about')
-const pageSortRating = document.querySelector('#sortRating')
+const pageSortZToA = document.querySelector('#sortZtoA')
+const pageSortAToZ = document.querySelector('#sortAtoZ')
 let gameArray = ""
 
 /******** Render Functions ********/
@@ -133,7 +134,8 @@ gameForm.addEventListener('submit', handleGameSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
 navigationBar.addEventListener('click', handleConsole)
 pageAbout.addEventListener('click', handlePageAbout)
-pageSortRating.addEventListener('click', handleSortRating)
+pageSortZToA.addEventListener('click', handleSortZToA)
+pageSortAToZ.addEventListener('click', handleSortAToZ)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -212,7 +214,7 @@ function handleReviewSubmit(event) {
         like: 0,
         playtime: reviewPlaytime,
         content: reviewContent, 
-        user_id: 2,
+        user_id: 1,
         game_id: id
     }
     addReview(newReview)
@@ -387,12 +389,40 @@ function handlePageAbout (event) {
 }
 }
 
-function handleSortRating (event) {
-    if (event.target.matches('#sortRating')) {
-        gameArray.sort(function(a,b) {return b.overall_rating - a.overall_rating})
+function handleSortZToA (event) {
+    if (event.target.matches('#sortZtoA')) {
+        console.log('click')
+        gameContainer.innerHTML = ""
+        const h1 = document.createElement('h1')
+        h1.textContent = 'Game List'
+        gameContainer.append(h1)
+        gameArray.sort(function(a, b) {
+            let textA = a.title.toUpperCase();
+            let textB = b.title.toUpperCase();
+            return (textA > textB) ? -1 : (textA < textB) ? 1 : 0;
+        });
+        renderAllGames(gameArray)
     }
 }
 
+function handleSortAToZ(event) {
+    if (event.target.matches('#sortAtoZ')) {
+        gameContainer.innerHTML = ""
+        const h1 = document.createElement('h1')
+        h1.textContent = 'Game List'
+        gameContainer.append(h1)
+        console.log('click')
+        gameArray.sort(function(a, b) {
+            let textA = a.title.toUpperCase();
+            let textB = b.title.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+        // gameArray.sort((a, b) => (a.overall_rating > b.overall_rating) ? -1 : 1)
+        // gameArray.sort((a, b) => b. - a.overall_rating)
+        
+        renderAllGames(gameArray)
+    }
+ }
 
 function handleToggle() {
     console.log("you clicked me")

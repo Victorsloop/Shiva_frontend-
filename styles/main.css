@@ -388,13 +388,17 @@ img.avatar {
     div.gallery {
       /* margin: 50px; */
       border: 10px solid green;
-      float: left;
+      float: center;
       width: 180px;
-      display: inline-block;
-      margin-top: 100px;
-      margin-bottom: 100px;
-      margin-right: 150px;
-      margin-left: 80px;
+      display: grid;
+      grid-column: ;
+      grid-template-columns: 40px 50px auto 50px 40px;
+      grid-row-gap: 40px;
+      justify-content: center;
+      /* margin-top: 10px;
+      margin-bottom: 10px;
+      margin-right: 1000px;
+      margin-left: 20px; */
     
     }
     
@@ -410,4 +414,18 @@ img.avatar {
     div.desc {
       padding: 15px;
       text-align: center;
+    }
+    .image-gallery{
+      box-sizing: border-box;
+      grid-column-gap: 24px;
+      column-gap: 24px;
+      display: grid;
+      grid-auto-flow: column;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding-bottom: 12px;
+      padding-right: 0px;
+      -webkit-box-align: center;
+
+
     }
