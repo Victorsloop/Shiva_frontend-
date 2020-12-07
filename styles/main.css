@@ -162,6 +162,11 @@ main {
     background-color: transparent;
     text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
   }
+
+  #game-list {
+    list-style-type: none;
+  }
+
   #review-container{
     display: flex;
     flex-wrap: wrap;
