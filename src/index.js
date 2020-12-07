@@ -23,13 +23,21 @@ globalDislikeButton.textContent = '💩'
 const toggleSwitch = document.querySelector("#toggle-dark-mode")
 const navigationBar = document.querySelector('.topnav')
 const pageAbout = document.querySelector('#about')
+const pageSortRating = document.querySelector('#sortRating')
+let gameArray = ""
 
 /******** Render Functions ********/
 const getGames =  () => {
     fetch("http://localhost:3000/api/v1/games")
     .then(r => r.json())
-    .then(games => renderAllGames(games))
+    .then(games => {
+
+        gameArray = games
+        renderAllGames(games)
+        // debugger
+    })
 }
+
 
 function renderAllGames(games) {
     games.forEach((game) => {
@@ -125,6 +133,7 @@ gameForm.addEventListener('submit', handleGameSubmit)
 toggleSwitch.addEventListener('click', handleToggle)
 navigationBar.addEventListener('click', handleConsole)
 pageAbout.addEventListener('click', handlePageAbout)
+pageSortRating.addEventListener('click', handleSortRating)
 
 /******** Event Handlers ********/
 function handleGameClick(event) {
@@ -377,6 +386,13 @@ function handlePageAbout (event) {
     
 }
 }
+
+function handleSortRating (event) {
+    if (event.target.matches('#sortRating')) {
+        gameArray.sort(function(a,b) {return b.overall_rating - a.overall_rating})
+    }
+}
+
 
 function handleToggle() {
     console.log("you clicked me")

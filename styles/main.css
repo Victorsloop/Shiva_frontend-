@@ -29,7 +29,7 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     /* background-size: 2560px 1500px; */
-     background-size: cover; */
+     background-size: cover; 
     /* height: 100vh; */
     /**background-color:rgba(177, 40, 40, 0.89);
     /* (68, 62, 62, 0.89) Our original color */
@@ -206,8 +206,8 @@ main {
 
   }
   #game-review{
-    width: 300px;
-    /* border: 15px solid green; */
+    /* width: 300px; */
+    border: 15px solid green;
     padding: 50px;
     margin: 20px;
     /* text-align: center; */
@@ -386,11 +386,15 @@ img.avatar {
     right: 35px;
     }
     div.gallery {
-      margin: 10px;
+      /* margin: 50px; */
       border: 10px solid green;
-      /* float: right; */
+      float: left;
       width: 180px;
-      /* display: inline-block; */
+      display: inline-block;
+      margin-top: 100px;
+      margin-bottom: 100px;
+      margin-right: 150px;
+      margin-left: 80px;
     
     }
     
