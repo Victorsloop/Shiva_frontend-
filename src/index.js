@@ -199,7 +199,6 @@ const updateLike = (id, likeObj, updatedLike, like) => {
 
 function handleReviewSubmit(event) {
     event.preventDefault()
-    // console.log(event.target.rating);
     const id = parseInt(reviewForm.dataset.id)
     const reviewTitle = event.target.title.value
     const reviewRating = parseInt(event.target.rating.value)
@@ -249,7 +248,6 @@ const addReview = (newReview) => {
 
 function handleGameSubmit(event) {
     event.preventDefault()
-    // const id = parseInt(gameForm.dataset.id)
     const newGameTitle = event.target.title.value
     const newGameDescription = event.target.description.value
     const newGamePlatform = event.target.platform.value
@@ -417,8 +415,6 @@ function handleSortAToZ(event) {
             let textB = b.title.toUpperCase();
             return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
         });
-        // gameArray.sort((a, b) => (a.overall_rating > b.overall_rating) ? -1 : 1)
-        // gameArray.sort((a, b) => b. - a.overall_rating)
         
         renderAllGames(gameArray)
     }
