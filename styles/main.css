@@ -1,6 +1,8 @@
 :root {
     --main-bg-color: #1b82b1;
+    --main-bg-image: url("https://image.freepik.com/free-vector/space-game-background-neon-night-alien-landscape_107791-1624.jpg");
     --alt-bg-color: rgba(255, 255, 255, 0.954);
+    --alt-bg-image: url("https://psitriangle.net/gallery/plog-content/images/sacred-geometry/exhibit-theta/infinitecosmos01_1600x1125.png");
     --main-font-color: #FFFFFF;
     --alt-font-color: rgba(0, 0, 0, 0.85);
     --alt-font-color-light: rgba(0, 0, 0, 0.68);
@@ -11,6 +13,7 @@
   body.dark-mode {
     --main-bg-color: rgb(0, 0, 0);
     --alt-bg-color: rgb(22, 21, 21);
+    --main-bg-image: var(--alt-bg-image);
     --main-font-color: #000000;
     --alt-font-color: rgba(255, 255, 255, 0.85);
     --alt-font-color-light: rgba(227, 227, 227, 0.68);
@@ -19,6 +22,12 @@
   }
 body {
     background-color: var(--main-bg-color);
+    background-image: var(--main-bg-image);
+    /* background-image: url(./src/game_background.jpg); */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: cover;
+    /* height: 100vh; */
     /**background-color:rgba(177, 40, 40, 0.89);
     /* (68, 62, 62, 0.89) Our original color */
     color: gray;
@@ -156,6 +165,7 @@ main {
   }
 
   #game-list{
+    list-style-type: none;
     font-size: 15px;
     color: #b3bfc9e7;
     text-align: center;
@@ -168,19 +178,32 @@ main {
   }
 
   #review-container{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
     /* flex-direction: column; */
     justify-content: flex-start;
     /* text-align: center; */
-    margin: 0px auto;
-    background-color: #a71111;
-    padding: 10px;
+    /* margin: 0px auto; */
+    background-color: transparent;
+    /* padding: 10px; */
     border-radius: 10px;
+    width: 520px;
+    padding: 120x;
+    border: 15px solid gray;
+    margin: 0;
+    float: center;
+    background-image: url("https://i.pinimg.com/originals/64/5c/8d/645c8d877f6e2aad7fa6545140c72a52.gif")
 
   }
   #game-review{
-    text-align: center;
+    width: 300px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+    /* text-align: center; */
+    float: center;
+    /* border: 2px solid black; */
+    background-color: transparent;
   }
   /* #game-image {
     position: fixed;
@@ -196,7 +219,7 @@ main {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
+  overflow: visible; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   padding-top: 60px;
@@ -227,22 +250,6 @@ main {
   color: red;
   cursor: pointer;
 }
-
-/* Add Zoom Animation */
-.animate {
-  -webkit-animation: animatezoom 0.6s;
-  animation: animatezoom 0.6s
-}
-
-@-webkit-keyframes animatezoom {
-  from {-webkit-transform: scale(0)}
-  to {-webkit-transform: scale(1)}
-}
-
-@keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
-}
 /* for our login button decore */ 
 button {
   background-color: #4CAF50;
@@ -251,7 +258,7 @@ button {
   margin: 8px 0;
   border: 2px solid green;
   cursor: pointer;
-  width: 100%;
+  width: 60%;
   height: 30%;
   align-items: center;
 }
@@ -259,7 +266,55 @@ button {
 .imgcontainer {
   text-align: center;
   margin: 24px 0 12px 0;
+  position: relative;
 }
 form {
   border: 3px solid #f1f1f1;
 }
+
+
+/* card attempts*/ 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 10px; /* 5px rounded corners */
+  align-content: center;
+  /* position: absolute; */
+  padding: 190px;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 10px 10px 10px 10px;
+  float: right;
+  width:  300px;
+  height: 300px;
+  object-fit: cover;
+  
+}
+.game-listnav {
+  /* margin-left:20px; */
+}
+.container {
+  padding: 16px;
+}
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+.game-card{
+  background-color: black;
+}
+/* This one is the class placed one new gameform and new reviewform */
+.sideBySideForm{
+  display: inline-block;
+  width: 80%;
+  height: 70%;
+  }
+/* .container{
+  width: 100px;
+  height: 50px;
+  position:fixed; 
+  top: calc(50% - 25px); // half of width
+  left: calc(50% - 50px); // half of height
+} */

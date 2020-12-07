@@ -4,6 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Hover attempt  -->
+    <style>
+        body {font-family: 'Times New Roman', Times, serif; }
+        
+        /* Full-width input fields */
+        input[type=text], input[type=password] {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+          width: auto;
+          padding: 10px 18px;
+          background-color: #f44336;
+        }
+        
+        /* Center the image and position the close button */
+        .imgcontainer {
+          text-align: center;
+          margin: 24px 0 12px 0;
+          position: relative;
+        }
+        
+        img.avatar {
+          width: 40%;
+          border-radius: 50%;
+        }
+        
+        .container {
+          padding: 16px;
+          display: block;
+        }
+        
+        span.psw {
+          float: right;
+          padding-top: 16px;
+        }
+        
+        /* The Modal (background) */
+        .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* fixed :Stay in place */
+          z-index: 1; /* Sit on top */
+          left: 0;
+          top: 0;
+          width: 70%; /* Full width */
+          height: 80%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+          padding-top: 60px;
+          margin-left: auto;
+        margin-right: auto;
+        }
+        
+        /* Modal Content/Box */
+        .modal-content {
+          background-color: #fefefe;
+          margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+          border: 1px solid #888;
+          width: 80%; /* Could be more or less, depending on screen size */
+        }
+        
+        /* The Close Button (x) */
+        .close {
+          position: absolute;
+          right: 25px;
+          top: 0;
+          color: #000;
+          font-size: 35px;
+          font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+          color: red;
+          cursor: pointer;
+        }
+        
+        /* Add Zoom Animation */
+        .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+        
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
+          
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
+        
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+          .cancelbtn {
+             width: 100%;
+          }
+        }
+        </style>
+    <!-- Hover attempt ended  -->
     <link rel="stylesheet" href="./styles/main.css">
     <script src="./src/index.js" defer> </script>
     <title>Document</title>
@@ -17,53 +129,24 @@
             <label for="toggle-dark-mode"></label>
         </div>
         <div class="topnav">
-            <li id="project-title"><a href="#home">SHIVA PROJECT</a></li>
+            <li id="project-title"><a href="#home">THE SHIVA PROJECT</a></li>
             <ul>
                 <li><a class="active" href="#home">Home</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a id="playstation" href="#playstation">Playstation</a></li>
+                <li><a id="xbox" href="#xbox">Xbox</a></li>
+                <li><a id="switch" href="#switch">Switch</a></li>
+                <li><a id="pc" href="#pc">PC</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#login"><button onclick="document.getElementById('id01').style.display='block'">Login</button></a></li>
+                <li><a href="#login"><Login onclick="document.getElementById('id01').style.display='block'">Login</button></a></li>
             </ul> 
             <!-- Attempt at login button and css  -->
             <!-- Button to open the modal login form -->
 <!-- <button onclick="document.getElementById('id01').style.display='block'">Login</button> -->
-
-<!-- The Modal -->
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'"
-class="close" title="Close Modal">&times;</span>
-
-  <!-- Modal Content -->
-  <form class="modal-content animate" action="/action_page.php">
-    <div class="imgcontainer">
-      <img src="https://p.kindpng.com/picc/s/111-1114371_download-left-handed-discord-thinking-emoji-discord-transparent.png" alt="Avatar" class="avatar">
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-            <!-- End of attempt  -->
             
         </div>
 
-    </header>
+    </header>   
+    
     <!-- This is for our playable audio -->
     <!-- <embed loop="true" src="./src/amongus.mp3" hidden="true" type="video/quicktime"></embed> -->
     <audio autoplay="autoplay" >
@@ -71,38 +154,73 @@ class="close" title="Close Modal">&times;</span>
     </audio>
     <!-- This is the end of our playable audio        -->
 
-    <nav>
+    <nav class= "game-listnav">
         <ul id="game-list" >
             <h1>Game List</h1>
 
         </ul>
     </nav>
     <main>
-        <div id="game-page">
+        <div>
+            <!-- Modal readjustment -->
+        <!-- The Modal -->
+<div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'"
+  class="close" title="Close Modal">&times;</span>
+  
+    <!-- Modal Content -->
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <img src="https://avatarfiles.alphacoders.com/132/thumb-1920-132132.png" alt="Avatar" class="avatar">
+      </div>
+  
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+  
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+              <!-- End of attempt  -->
+
+
+
+        </div>
+        <div id="game-page" class= "card" style="width:60%">
             <img id="game-image">
-            <h1 id="game-title"></h1>
-            <h3 id="game-rating"></h3>
-            <h3 id="game-release"></h3>
-            <div>
-                <p id="game-description"></p>
+            <div class= "container">
+
+                <h1 id="game-title"></h1>
+                <h3 id="game-rating"></h3>
+                <h3 id="game-release"></h3>
+                <h3 id="game-platform"></h3>
+                <div>
+                    <p id="game-description"></p>
+                </div>
             </div>
-            <div>
-                <form id="review-form" data-id="" autocomplete="off">
-                    <h4>Review the Game</h4>
-                    <label for="name">Game Name: </label>
+
+            <div class="sideBySideForm">
+                <form id="review-form" autocomplete="off">
+                    <h4>Review a Game</h4>
+                    <label for="name">Game Title: </label>
                     <input type="title" name="title" id="review-name" />
                     <label for="name">Platform: </label>
                     <input type="text" name="platform" id="review-platform" />
                     <label for="name">Rating: </label>
                     <input type="text" name="rating" placeholder="Please enter a rating from 1 to 5"
                         id="review-rating" />
-                    <!-- <select name="review-rate" id="review-rating">
-                        <option value="num1">1</option>
-                        <option value="num2">2</option>
-                        <option value="num3">3</option>
-                        <option value="num4">4</option>
-                        <option value="num5">5</option>
-                    </select> -->
                     <label for="name">Playtime: </label>
                     <input type="text" name="playtime" id="review-playtime" />
                     <label for="name">Write a Review: </label>
@@ -110,16 +228,33 @@ class="close" title="Close Modal">&times;</span>
                     <input type="submit" value="Add Review" />
                 </form>
             </div>
-            <hr>
-        </div>
-        <div id="review-container">
+            <div class="sideBySideForm">
+                <form id="game-form" autocomplete="off">
+                    <h4>Add a Game</h4>
+                    <label for="name">Game Title: </label>
+                    <input type="title" name="title" id="new-game-title" />
+                    <label for="name">Game Description: </label>
+                    <input type="text" name="description" id="new-game-description" />
+                    <label for="name">Game Platform: </label>
+                    <input type="text" name="platform" id="new-game-platform" />
+                    <label for="name">Game Release Date: </label>
+                    <input type="text" name="releasedate" id="new-game-releasedate" placeholder="Ex. September 22nd, 1988" />
+                    <label for="name">Game Image: </label>
+                    <input type="text" name="image" id="new-game-image" />
+                    <input type="submit" value="Add Game" />
+                </form>
+            </div>
+          </div>
+          <hr>
+          <!-- the low the wifth the longer it is -->
+        <div id="review-container" style="width:130%"  > 
             <h3>Reviews</h3>
             <ul id="game-review">
                 <!-- <li></li> -->
             </ul>
 
         </div>
-
+      </hr>
 
 
     </main>
