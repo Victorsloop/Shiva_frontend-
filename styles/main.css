@@ -117,7 +117,7 @@ main {
   }  This is a blue edition */
 
   .topnav {
-    display: flex;
+    /* display: flex; */
     justify-content: flex-end;
     align-items: center;
     margin: 0;
@@ -135,7 +135,7 @@ main {
   /* Style the links inside the navigation bar */
   .topnav ul li a {
     /* display: block; */
-    float: right;
+    float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 20px;
@@ -227,7 +227,7 @@ main {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: visible; /* Enable scroll if needed */
+  overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   padding-top: 60px;
@@ -318,6 +318,7 @@ img.avatar {
   display: inline-block;
   width: 80%;
   height: 70%;
+  box-sizing: border-box;
   }
   input[type=text] {
     background-color: #0dbb24;
@@ -382,6 +383,13 @@ img.avatar {
     top: 15px;
     right: 35px;
     }
+
+    /* li a{
+      float: left;
+    }
+    a{
+      float: left;
+    } */
 /* .container{
   width: 100px;
   height: 50px;
