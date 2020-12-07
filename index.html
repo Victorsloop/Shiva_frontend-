@@ -157,6 +157,28 @@
     <nav class= "game-listnav">
         <ul id="game-list" >
             <h1>Game List</h1>
+            <!-- overlay attempt  -->
+            <div id="myNav" class="overlay">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+              <div class="overlay-content">
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Sort by Rating</a>
+                <a href="#">Sort by Reviews</a>
+              </div>
+            </div>
+            <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Click Me</span>
+
+              <script>
+                  function openNav() {
+                  document.getElementById("myNav").style.width = "100%";
+                }
+
+                  function closeNav() {
+                  document.getElementById("myNav").style.width = "0%";
+                }
+              </script>
+            <!-- overlay attempt end -->
 
         </ul>
     </nav>
@@ -235,8 +257,14 @@
                     <input type="title" name="title" id="new-game-title" />
                     <label for="name">Game Description: </label>
                     <input type="text" name="description" id="new-game-description" />
-                    <label for="name">Game Platform: </label>
-                    <input type="text" name="platform" id="new-game-platform" />
+                    <!-- <label for="name">Game Platform: </label> -->
+                    <!-- <input type="text" name="platform" id="new-game-platform" /> -->
+                    <select id="new-game-platform" name="new-game-platform">
+                      <option value="Playstation">Playstation</option>
+                      <option value="Xbox">Xbox</option>
+                      <option value="Switch">Switch</option>
+                      <option value="PC">PC</option>
+                    </select>
                     <label for="name">Game Release Date: </label>
                     <input type="text" name="releasedate" id="new-game-releasedate" placeholder="Ex. September 22nd, 1988" />
                     <label for="name">Game Image: </label>
