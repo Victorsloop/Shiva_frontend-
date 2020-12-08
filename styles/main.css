@@ -3,12 +3,15 @@
     --main-bg-image: url("background_one.jpg");
     --alt-bg-color: rgba(255, 255, 255, 0.954);
     /* --alt-bg-image: url("https://psitriangle.net/gallery/plog-content/images/sacred-geometry/exhibit-theta/infinitecosmos01_1600x1125.png"); */
-    --alt-bg-image: url("game_background.jpg");
+    --alt-bg-image: url("https://media1.giphy.com/media/U3qYN8S0j3bpK/giphy.gif");
     --main-font-color: #FFFFFF;
     --alt-font-color: rgba(0, 0, 0, 0.85);
     --alt-font-color-light: rgba(0, 0, 0, 0.68);
     --header-bg-color: blue;
+    --topnav-bg-color: rgb(17, 9, 92);
     --nav-bg-color: rgb(126, 169, 233);
+    --projectname-textshadow: 0 0 5px #d10808, 0 0 10px #d10808, 0 0 15px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808;
+    --body-textshadow:0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1; 
   }
   
   body.dark-mode {
@@ -16,10 +19,13 @@
     --alt-bg-color: rgb(22, 21, 21);
     --main-bg-image: var(--alt-bg-image);
     --main-font-color: #000000;
+    --topnav-bg-color: black;
     --alt-font-color: rgba(255, 255, 255, 0.85);
     --alt-font-color-light: rgba(227, 227, 227, 0.68);
     --header-bg-color: #7965dc;
-    --nav-bg-color: purple
+    --nav-bg-color: rgb(43, 5, 43);
+    --projectname-textshadow: 0 0 5px #08d134a6, 0 0 10px #17b611, 0 0 15px #08d119c5, 0 0 20px #08d13a, 0 0 20px #08d112, 0 0 20px #08d123, 0 0 20px #08d112;
+    --body-textshadow: 0 0 5px #08d134a6, 0 0 10px #17b611, 0 0 15px #08d119c5, 0 0 20px #08d13a, 0 0 20px #08d112, 0 0 20px #08d123, 0 0 20px #08d112;
   }
 body {
     background-color: var(--main-bg-color);
@@ -28,9 +34,7 @@ body {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    /* background-size: 2560px 1500px; */
      background-size: cover; 
-    /* height: 100vh; */
     /**background-color:rgba(177, 40, 40, 0.89);
     /* (68, 62, 62, 0.89) Our original color */
     color: gray;
@@ -44,28 +48,24 @@ body {
 header {
     grid-area: header;
     background-color: var(--header-bg-color);
-    background-color: blue;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     margin-left: 60px;
     width: 90%;
-    /* align-items: center;
-    text-align: center; */
 }
 
 nav {
     grid-area: nav;
     background-color: var(--nav-bg-color);
     /*background-color: rgb(126, 169, 233);*/
-    border: 2px solid purple;
+    /* border: 2px solid purple; */
     margin-left: 60px;
     padding: 8px;
 }
 
 
 main {
-    /*background-color: hotpink; */
     grid-area: main;
-    border: 2px solid blue; 
+    /* border: 2px solid blue;  */
     width: 100%;
     color: white;
     font-size: 20px;
@@ -110,21 +110,13 @@ main {
     background-color: var(--alt-bg-color);
   } 
 
-  /*#project-title{
-    font-size: 30px;
-    color: #b3bfc9e7;
-    text-align: center;
-    background-color: transparent;
-    text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
-  }  This is a blue edition */
-
   .topnav {
     /* display: flex; */
     justify-content: flex-end;
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: #333;
+    background-color: var(--topnav-bg-color);
     overflow: hidden;
     width: 100%;
   }
@@ -166,20 +158,19 @@ main {
     color: #e59797e7;
     text-align: center;
     background-color: transparent;
-    text-shadow: 0 0 5px #d10808, 0 0 10px #d10808, 0 0 15px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808;
+    text-shadow: var(--projectname-textshadow);
+    /* text-shadow: 0 0 5px #d10808, 0 0 10px #d10808, 0 0 15px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808, 0 0 20px #d10808; */
   }
 
   #game-list{
     list-style-type: none;
-    font-size: 15px;
+    font-size: 20px;
+    margin-bottom: 5px;
     color: #b3bfc9e7;
     text-align: center;
     background-color: transparent;
-    text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
-  }
-
-  #game-list {
-    list-style-type: none;
+    text-shadow: var(--body-textshadow);
+    /* text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1; */
   }
 
   #review-container{
@@ -207,18 +198,13 @@ main {
   }
   #game-review{
     /* width: 300px; */
-    border: 15px solid green;
+    /* border: 15px solid green; */
     padding: 50px;
     margin: 20px;
-    /* text-align: center; */
     float: center;
-    /* border: 2px solid black; */
     background-color: transparent;
   }
-  /* #game-image {
-    position: fixed;
-  } */
-  
+
 /** styling for login attempt *// 
 /* The Modal (background) */
 .modal {
@@ -268,7 +254,7 @@ button {
   margin: 8px 0;
   border: 2px solid green;
   cursor: pointer;
-  width: 60%;
+  width: 40;
   height: 30%;
   align-items: center;
 }
@@ -327,7 +313,8 @@ img.avatar {
     color: white;
     padding: 12px 20px 12px 40px;
     background-image: url("https://img.freepik.com/free-vector/space-background-with-abstract-shape-stars_189033-30.jpg?size=626&ext=jpg");
-    text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1;
+    text-shadow: var(--body-textshadow);
+    /* text-shadow: 0 0 5px #080bd1, 0 0 10px #0815d1, 0 0 15px #0815d1, 0 0 20px #085fd1, 0 0 20px #083ed1, 0 0 20px #082dd1, 0 0 20px #3408d1; */
   }
   /* Anything within label tag color changed to white so more visible  */
   label{
@@ -385,8 +372,7 @@ img.avatar {
     top: 15px;
     right: 35px;
     }
-    div.gallery {
-      /* margin: 50px; */
+    /* div.gallery {
       border: 10px solid green;
       float: center;
       width: 180px;
@@ -395,11 +381,6 @@ img.avatar {
       grid-template-columns: 40px 50px auto 50px 40px;
       grid-row-gap: 40px;
       justify-content: center;
-      /* margin-top: 10px;
-      margin-bottom: 10px;
-      margin-right: 1000px;
-      margin-left: 20px; */
-    
     }
     
     div.gallery:hover {
@@ -421,11 +402,23 @@ img.avatar {
       column-gap: 24px;
       display: grid;
       grid-auto-flow: column;
-      overflow-x: auto;
-      overflow-y: hidden;
       padding-bottom: 12px;
       padding-right: 0px;
-      -webkit-box-align: center;
+      -webkit-box-align: left;
 
 
+    } */
+    .gallery{
+      margin:10px 40px;
+      justify-content: center;
     }
+    .gallery img{
+      transition:1s;
+      padding:15px;
+      width:200px;
+    }
+    .gallery img:hover{
+      filter:grayscale(100%);
+      transform: scale(1.1);
+    }
+   
