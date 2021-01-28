@@ -11,7 +11,7 @@ A community driven, game lover or despiser reviewing site. Made for people of al
 -Swap to incognito mode and get out of the light 
 
 ## Installation 
-1. Clone boht this repository and the back end 
+1. Clone both this repository and the [back end](https://github.com/warrenniu/shiva_project)
 2. Run bundle install to have all the neccessary gems 
 3. Start the server with rails s on the back end 
 4. Have a blast 
